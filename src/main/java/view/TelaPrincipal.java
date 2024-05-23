@@ -39,6 +39,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextPane1);
 
         JBAmigo.setText("Amigo");
+        JBAmigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBAmigoActionPerformed(evt);
+            }
+        });
 
         JBFerramenta.setText("Ferramenta");
         JBFerramenta.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +113,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //adicionar 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBFerramentaActionPerformed
+
+    private void JBAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAmigoActionPerformed
+        TelaAmigos objeto = new TelaAmigos();
+        objeto.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBAmigoActionPerformed
 
     /**
      * @param args the command line arguments

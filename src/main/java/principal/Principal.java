@@ -1,7 +1,5 @@
 package principal;
 import view.TelaPrincipal;
-import view.TelaAmigos;
-import view.TelaFerramenta;
 
 
 public class Principal {
