@@ -57,7 +57,7 @@ public Amigo(){
     }
     public boolean insertAmigoBD(String nome, int ind) {
         int id = this.maiorID() + 1;
-        Amigo objeto = new Amigo();
+        Amigo objeto = new Amigo(id, nome, ind, ferramentasPegas);
         AmigoDAO.minhaLista.add(objeto);
         return true;
     }

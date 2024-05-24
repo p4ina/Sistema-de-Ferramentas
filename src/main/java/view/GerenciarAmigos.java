@@ -198,8 +198,8 @@ public void carregaTabela() {
         ArrayList<Amigo> minhaLista = objetoamigo.getMinhaLista();
         for (Amigo a : minhaLista) {
             modelo.addRow(new Object[]{
-                a.getTelefone(),
-                a.getNome()
+            a.getNome(),
+            a.getTelefone(), a.getId()
             });
         }
     }
