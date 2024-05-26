@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view;
+package visao;
 
 /**
  *
@@ -144,8 +144,7 @@ public class TelaFerramenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
-    TelaFerramenta tela = new TelaFerramenta();
-    tela.setVisible(true);
+
     this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_JBVoltarActionPerformed

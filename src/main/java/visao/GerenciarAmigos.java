@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view;
+package visao;
+
 import projeto.aluguel.ferramenta.Model.Amigo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import visao.Mensagem;
 import projeto.aluguel.ferramenta.Model.Amigo;
-import view.TelaAmigos;
-
+import visao.TelaAmigos;
 
 /**
  *
@@ -18,15 +18,13 @@ import view.TelaAmigos;
  */
 public class GerenciarAmigos extends javax.swing.JFrame {
 
-   private Amigo objetoamigo;
-    
-   
-   
+    private Amigo objetoamigo;
+
     public GerenciarAmigos() {
         initComponents();
-        this.objetoamigo = new Amigo(); // carrega objetoaluno de aluno
+        this.objetoamigo = new Amigo(); // carrega objetoamigo de amigo
         this.carregaTabela();
-        
+
     }
 
     /**
@@ -56,7 +54,7 @@ public class GerenciarAmigos extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nome", "Telefone", "Id"
+                "Id", "Nome", "Telefone"
             }
         ));
         JTableAmigos.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -77,6 +75,11 @@ public class GerenciarAmigos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(JTableAmigos);
 
         JBRemoverAmigo.setText("Remover Amigo");
+        JBRemoverAmigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBRemoverAmigoActionPerformed(evt);
+            }
+        });
 
         JBAtualizarAmigo.setText("Atualizar Amigo");
         JBAtualizarAmigo.addActionListener(new java.awt.event.ActionListener() {
@@ -86,10 +89,25 @@ public class GerenciarAmigos extends javax.swing.JFrame {
         });
 
         JTFNome.setText("jTextField1");
+        JTFNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFNomeActionPerformed(evt);
+            }
+        });
 
         JTFTelefone.setText("jTextField1");
+        JTFTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFTelefoneActionPerformed(evt);
+            }
+        });
 
         JTFId.setText("jTextField1");
+        JTFId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFIdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,7 +155,7 @@ public class GerenciarAmigos extends javax.swing.JFrame {
 
     private void JBAtualizarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAtualizarAmigoActionPerformed
         try {
-            // recebendo e validando dados da interface gráfica.
+            // recebe e valida os dados da interface gráfica.
             int id = 0;
             String nome = "";
             int telefone = 0;
@@ -147,7 +165,7 @@ public class GerenciarAmigos extends javax.swing.JFrame {
             } else {
                 nome = this.JTFNome.getText();
             }
-            
+
             if (this.JTFId.getText().length() <= 0) {
                 throw new Mensagem("Idade deve ser número e maior que zero.");
             } else {
@@ -161,7 +179,7 @@ public class GerenciarAmigos extends javax.swing.JFrame {
             }
 
             if (this.JTableAmigos.getSelectedRow() == -1) {
-                throw new Mensagem("Primeiro Selecione um Aluno para Alterar");
+                throw new Mensagem("Primeiro Selecione um Amigo para Alterar");
             } else {
                 id = Integer.parseInt(this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 0).toString());
             }
@@ -185,26 +203,12 @@ public class GerenciarAmigos extends javax.swing.JFrame {
             // atualiza a tabela.
             carregaTabela();
         }
-    
-        
-   
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_JBAtualizarAmigoActionPerformed
-public void carregaTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) this.JTableAmigos.getModel();
-        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
-        // Carrega a lista de objetos aluno
-        ArrayList<Amigo> minhaLista = objetoamigo.getMinhaLista();
-        for (Amigo a : minhaLista) {
-            modelo.addRow(new Object[]{
-            a.getNome(),
-            a.getTelefone(), a.getId()
-            });
-        }
-    }
+
     private void JTableAmigosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JTableAmigosAncestorAdded
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_JTableAmigosAncestorAdded
 
@@ -225,6 +229,65 @@ public void carregaTabela() {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_JTableAmigosMouseClicked
+
+    private void JBRemoverAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRemoverAmigoActionPerformed
+        try {
+            //
+            int id = 0;
+            if (this.JTableAmigos.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione um Amigo para Apagar");
+            } else {
+                id = Integer.parseInt(this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 0).toString());
+            }
+
+            // 
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar este Amigo ?");
+
+            if (respostaUsuario == 0) {// clicou em SIM
+                // envia os dados para o Aluno processar
+                if (this.objetoamigo.deleteAmigoBD(id)) {
+                    // limpa os campos
+                    this.JTFNome.setText("");
+                    this.JTFTelefone.setText("");
+
+                    JOptionPane.showMessageDialog(rootPane, "Amigo Apagado com Sucesso!");
+                }
+            }
+            // atualiza a tabela.
+            System.out.println(this.objetoamigo.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            //
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBRemoverAmigoActionPerformed
+
+    private void JTFIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFIdActionPerformed
+
+    private void JTFTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFTelefoneActionPerformed
+
+    private void JTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFNomeActionPerformed
+
+    public void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.JTableAmigos.getModel();
+        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
+        // Carrega a lista de objetos aluno
+        ArrayList<Amigo> minhaLista = objetoamigo.getMinhaLista();
+        for (Amigo a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getNome(),
+                a.getTelefone(),
+                });
+            }
+    }
 
     /**
      * @param args the command line arguments
@@ -270,6 +333,5 @@ public void carregaTabela() {
     private javax.swing.JTable JTableAmigos;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
 
 }
