@@ -73,7 +73,7 @@ public Amigo(){
         AmigoDAO.minhaLista.remove(indice);
         return true;
 }
-    //edson 
+    
     //metodo para atualizar os dados de algum amigo que ja existe
     public boolean updateAmigoBD(String nome, int id) {
         Amigo objeto = new Amigo(id, nome, telefone, ferramentasPegas);
