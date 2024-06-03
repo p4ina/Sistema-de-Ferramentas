@@ -1,4 +1,3 @@
-
 package projeto.aluguel.ferramenta.Connection;
 
 import java.sql.ResultSet;
@@ -8,7 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-public class ConnectionFactory {
+public class Conexao {
     
     private static final String URL = "jdbc:mysql://localhost:3306/aaa";
     private static final String USER = "";

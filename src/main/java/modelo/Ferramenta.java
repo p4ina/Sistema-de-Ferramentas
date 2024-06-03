@@ -1,7 +1,7 @@
-package projeto.aluguel.ferramenta.Model;
+package modelo;
 
 import java.util.ArrayList;
-import DAO.FerramentaDAO;
+import dao.FerramentaDAO;
 
 public class Ferramenta {
    //atributos da classe

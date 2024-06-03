@@ -1,5 +1,5 @@
 
-package projeto.aluguel.ferramenta.Model;
+package modelo;
 import java.time.LocalDateTime;
 import java.util.Date;
 

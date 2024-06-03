@@ -39,10 +39,8 @@
               <EmptySpace pref="21" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="JBVoltar" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="JBAtualizarFerramenta" max="32767" attributes="0"/>
-                      <Component id="JBRemoverFerramenta" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="JBAtualizarFerramenta" max="32767" attributes="0"/>
+                  <Component id="JBRemoverFerramenta" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

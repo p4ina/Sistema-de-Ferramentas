@@ -1,8 +1,7 @@
-
-package DAO;
+package dao;
 
 import java.util.ArrayList;
-import projeto.aluguel.ferramenta.Model.Amigo;
+import modelo.Amigo;
 
 public class AmigoDAO {
     //lista que armazema os objetos
@@ -17,10 +16,6 @@ public class AmigoDAO {
     public static void setMinhaLista(ArrayList<Amigo> minhaLista) {
         AmigoDAO.minhaLista = minhaLista;
     }
-
-      // Retorna o maior id do aluno do ArrayList.
-     
-      //@return Um id com o Maior id de aluno
      
     public static int maiorID() {
         int maiorID = 0;

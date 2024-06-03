@@ -1,7 +1,7 @@
-package projeto.aluguel.ferramenta.Model;
+package modelo;
 
 import java.util.ArrayList;
-import DAO.AmigoDAO;
+import dao.AmigoDAO;
 
 public class Amigo {
     
