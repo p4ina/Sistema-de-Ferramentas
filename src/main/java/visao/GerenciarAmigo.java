@@ -174,17 +174,17 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             int id = 0;
             String nome = "";
             int telefone = 0;
+            
+            if (this.JTFId.getText().length() <= 0) {
+                throw new Mensagem("Idade deve ser número e maior que zero.");
+            } else {
+                id = Integer.parseInt(this.JTFId.getText());
+            }
 
             if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
                 nome = this.JTFNome.getText();
-            }
-
-            if (this.JTFId.getText().length() <= 0) {
-                throw new Mensagem("Idade deve ser número e maior que zero.");
-            } else {
-                id = Integer.parseInt(this.JTFId.getText());
             }
 
             if (this.JTFTelefone.getText().length() <= 0) {
@@ -200,7 +200,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             }
 
             // envia os dados para o Aluno processar
-            if (this.objetoamigo.updateAmigoBD(nome, telefone)) {
+            if (this.objetoamigo.updateAmigoBD(id, nome, telefone)) {
                 // limpa os campos
                 this.JTFId.setText("");
                 this.JTFNome.setText("");
@@ -234,15 +234,14 @@ public class GerenciarAmigo extends javax.swing.JFrame {
 
     private void JTableAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableAmigosMouseClicked
         if (this.JTableAmigos.getSelectedRow() != -1) {
-            String nome = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 1).toString();
-            String id = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 2).toString();
+            String id = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 1).toString();
+            String nome = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 2).toString();
             String telefone = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 3).toString();
 
-            this.JTFNome.setText(nome);
             this.JTFId.setText(id);
+            this.JTFNome.setText(nome);
             this.JTFTelefone.setText(telefone);
         }
-        // TODO add your handling code here:
     }//GEN-LAST:event_JTableAmigosMouseClicked
 
     private void JBRemoverAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRemoverAmigoActionPerformed
@@ -260,7 +259,6 @@ public class GerenciarAmigo extends javax.swing.JFrame {
 
             if (respostaUsuario == 0) {
                 if (this.objetoamigo.deleteAmigoBD(id)) {
-                    // limpa os campos
                     this.JTFNome.setText("");
                     this.JTFTelefone.setText("");
 

@@ -136,15 +136,17 @@ public class TelaFerramenta extends javax.swing.JFrame {
             } else {
                 ferramenta = this.JTFFerramenta.getText();
             }
-            if (this.JTFPreco.getText().length() <= 0) {
-                throw new Mensagem("Idade deve ser número e maior que zero.");
-            } else {
-                preco = Integer.parseInt(this.JTFPreco.getText());
-            }
+            
             if (this.JTFMarca.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
                 marca = this.JTFMarca.getText();
+            }
+            
+            if (this.JTFPreco.getText().length() <= 0) {
+                throw new Mensagem("Idade deve ser número e maior que zero.");
+            } else {
+                preco = Integer.parseInt(this.JTFPreco.getText());
             }
             
             // envia os dados para o Controlador cadastrar
@@ -152,8 +154,8 @@ public class TelaFerramenta extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ferramenta Cadastrado com Sucesso!");
                 // limpa campos da interface
                 this.JTFFerramenta.setText("");
-                this.JTFPreco.setText("");
                 this.JTFMarca.setText("");
+                this.JTFPreco.setText("");
             }
             // Exibie no console o aluno cadastrado
             System.out.println(this.objetoferramenta.getMinhaLista().toString());

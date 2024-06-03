@@ -179,16 +179,16 @@ public class TelaAmigo extends javax.swing.JFrame {
             String nome = "";
             int telefone = 0;
 
+            if (this.JTFId.getText().length() <= 0) {
+                throw new Mensagem("Idade deve ser número e maior que zero.");
+            } else {
+                id = Integer.parseInt(this.JTFId.getText());
+            }
             
             if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
                 nome = this.JTFNome.getText();
-            }
-            if (this.JTFId.getText().length() <= 0) {
-                throw new Mensagem("Idade deve ser número e maior que zero.");
-            } else {
-                id = Integer.parseInt(this.JTFId.getText());
             }
 
             if (this.JTFTelefone.getText().length() <= 0) {

@@ -75,7 +75,7 @@ public Amigo(){
 }
     
     //metodo para atualizar os dados de algum amigo que ja existe
-    public boolean updateAmigoBD(String nome, int id) {
+    public boolean updateAmigoBD(int id, String nome, int telefone) {
         Amigo objeto = new Amigo(id, nome, telefone, ferramentasPegas);
         int indice = this.procuraIndice(id);
         AmigoDAO.minhaLista.set(indice, objeto);
