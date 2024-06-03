@@ -174,9 +174,9 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             int id = 0;
             String nome = "";
             int telefone = 0;
-            
+
             if (this.JTFId.getText().length() <= 0) {
-                throw new Mensagem("Idade deve ser número e maior que zero.");
+                throw new Mensagem("ID deve ser número e maior que zero.");
             } else {
                 id = Integer.parseInt(this.JTFId.getText());
             }
@@ -301,9 +301,8 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 a.getId(),
                 a.getNome(),
-                a.getTelefone(),
-                });
-            }
+                a.getTelefone(),});
+        }
     }
 
     public static void main(String args[]) {

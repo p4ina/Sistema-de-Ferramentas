@@ -184,7 +184,7 @@ public class TelaAmigo extends javax.swing.JFrame {
             } else {
                 id = Integer.parseInt(this.JTFId.getText());
             }
-            
+
             if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
@@ -194,7 +194,7 @@ public class TelaAmigo extends javax.swing.JFrame {
             if (this.JTFTelefone.getText().length() <= 0) {
                 throw new Mensagem("telefone deve ser número e maior que zero.");
             } else {
-                telefone= Integer.parseInt(this.JTFTelefone.getText());
+                telefone = Integer.parseInt(this.JTFTelefone.getText());
             }
             // envia os dados para o Controlador cadastrar
             if (this.objetoamigo.insertAmigoBD(nome, telefone)) {
@@ -212,8 +212,7 @@ public class TelaAmigo extends javax.swing.JFrame {
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número válido.");
 
-
-    }
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBCadastrarAmigoActionPerformed
@@ -229,7 +228,7 @@ public class TelaAmigo extends javax.swing.JFrame {
     private void JBGerenciarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGerenciarAmigoActionPerformed
         GerenciarAmigo objeto = new GerenciarAmigo();
         objeto.setVisible(true);
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_JBGerenciarAmigoActionPerformed
 

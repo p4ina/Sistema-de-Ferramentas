@@ -2,6 +2,7 @@ package visao;
 
 import visao.TelaFerramenta;
 import visao.TelaAmigo;
+
 public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal() {
@@ -119,7 +120,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         objeto.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_JBAmigoActionPerformed
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

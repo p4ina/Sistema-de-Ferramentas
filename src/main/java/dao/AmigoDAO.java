@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import modelo.Amigo;
 
 public class AmigoDAO {
+
     //lista que armazema os objetos
-     public static ArrayList<Amigo> minhaLista = new ArrayList<>();
+    public static ArrayList<Amigo> minhaLista = new ArrayList<>();
 
     //retorna o ArrayList
     public static ArrayList<Amigo> getMinhaLista() {
@@ -16,7 +17,7 @@ public class AmigoDAO {
     public static void setMinhaLista(ArrayList<Amigo> minhaLista) {
         AmigoDAO.minhaLista = minhaLista;
     }
-     
+
     public static int maiorID() {
         int maiorID = 0;
         for (int i = 0; i < minhaLista.size(); i++) {
@@ -27,5 +28,3 @@ public class AmigoDAO {
         return maiorID;
     }
 }
-
-

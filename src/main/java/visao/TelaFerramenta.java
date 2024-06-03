@@ -7,10 +7,10 @@ import modelo.Ferramenta;
 public class TelaFerramenta extends javax.swing.JFrame {
 
     private Ferramenta objetoferramenta;
-    
+
     public TelaFerramenta() {
         initComponents();
-        this.objetoferramenta = new Ferramenta(); 
+        this.objetoferramenta = new Ferramenta();
     }
 
     @SuppressWarnings("unchecked")
@@ -113,7 +113,7 @@ public class TelaFerramenta extends javax.swing.JFrame {
 
     private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
 
-    this.dispose();
+        this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_JBVoltarActionPerformed
 
@@ -130,25 +130,24 @@ public class TelaFerramenta extends javax.swing.JFrame {
             String marca = "";
             double preco = 0;
 
-            
             if (this.JTFFerramenta.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
                 ferramenta = this.JTFFerramenta.getText();
             }
-            
+
             if (this.JTFMarca.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
                 marca = this.JTFMarca.getText();
             }
-            
+
             if (this.JTFPreco.getText().length() <= 0) {
                 throw new Mensagem("Idade deve ser número e maior que zero.");
             } else {
                 preco = Integer.parseInt(this.JTFPreco.getText());
             }
-            
+
             // envia os dados para o Controlador cadastrar
             if (this.objetoferramenta.insertFerramentaBD(ferramenta, marca, preco)) {
                 JOptionPane.showMessageDialog(null, "Ferramenta Cadastrado com Sucesso!");
@@ -164,12 +163,10 @@ public class TelaFerramenta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número válido.");
-    }
-        
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_JBCadastrarFerramentaActionPerformed
-
-    
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
