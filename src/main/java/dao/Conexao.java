@@ -1,4 +1,4 @@
-package projeto.aluguel.ferramenta.Connection;
+package dao;
 
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
