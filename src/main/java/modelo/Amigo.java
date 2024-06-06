@@ -10,6 +10,7 @@ public class Amigo {
     private String nome;
     private int telefone;
     private int ferramentasPegas;
+    public Amigo getMinhaLista;
 
     //construtor principal
     public Amigo(int id, String nome, int telefone, int ferramentasPegas) {

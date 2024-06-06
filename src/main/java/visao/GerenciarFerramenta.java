@@ -31,8 +31,6 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
         JBRemoverFerramenta = new javax.swing.JToggleButton();
         JBAtualizarFerramenta = new javax.swing.JToggleButton();
         JBVoltar = new javax.swing.JToggleButton();
-        JTFId = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,14 +92,6 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             }
         });
 
-        JTFId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFIdActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("ID");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,15 +99,12 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(JTFId, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JTFFerramentas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                     .addComponent(JTFMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                     .addComponent(JTFPreco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
@@ -132,11 +119,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTFId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(11, 11, 11)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JTFFerramentas)
@@ -219,12 +202,6 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             String marca = "";
             double preco = 0.0;
 
-            if (this.JTFId.getText().length() <= 0) {
-                throw new Mensagem("ID deve ser número e maior que zero.");
-            } else {
-                id = Integer.parseInt(this.JTFId.getText());
-            }
-
             if (this.JTFFerramentas.getText().length() < 2) {
                 throw new Mensagem("Nome da Ferramenta deve conter ao menos 2 caracteres.");
             } else {
@@ -252,7 +229,6 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             // envia os dados para o Aluno processar
             if (this.objetoferramenta.updateFerramentaBD(id, ferramenta, marca, preco)) {
                 // limpa os campos
-                this.JTFId.setText("");
                 this.JTFFerramentas.setText("");
                 this.JTFMarca.setText("");
                 this.JTFPreco.setText("");
@@ -277,10 +253,6 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_JBVoltarActionPerformed
-
-    private void JTFIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTFIdActionPerformed
 
     public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableFerramenta.getModel();
@@ -333,14 +305,12 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
     private javax.swing.JToggleButton JBRemoverFerramenta;
     private javax.swing.JToggleButton JBVoltar;
     private javax.swing.JTextField JTFFerramentas;
-    private javax.swing.JTextField JTFId;
     private javax.swing.JTextField JTFMarca;
     private javax.swing.JTextField JTFPreco;
     private javax.swing.JTable JTableFerramenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

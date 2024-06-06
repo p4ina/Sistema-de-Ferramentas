@@ -2,6 +2,7 @@ package visao;
 
 import visao.TelaFerramenta;
 import visao.TelaAmigo;
+import visao.Emprestimo;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -46,6 +47,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         JBEmprestimo.setText("Empréstimo");
+        JBEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBEmprestimoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Amigos");
 
@@ -120,6 +126,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         objeto.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_JBAmigoActionPerformed
+
+    private void JBEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEmprestimoActionPerformed
+        Emprestimo tela = new Emprestimo();
+        tela.setVisible(true);
+            // TODO add your handling code here:
+    }//GEN-LAST:event_JBEmprestimoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

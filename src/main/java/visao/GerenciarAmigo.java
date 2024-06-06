@@ -27,9 +27,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         JBAtualizarAmigo = new javax.swing.JButton();
         JTFNome = new javax.swing.JTextField();
         JTFTelefone = new javax.swing.JTextField();
-        JTFId = new javax.swing.JTextField();
         JBVoltar = new javax.swing.JToggleButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -89,20 +87,12 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             }
         });
 
-        JTFId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFIdActionPerformed(evt);
-            }
-        });
-
         JBVoltar.setText("Voltar");
         JBVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBVoltarActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("ID");
 
         jLabel2.setText("Telefone");
 
@@ -116,13 +106,10 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JTFId)
                     .addComponent(JTFTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                     .addComponent(JTFNome))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,10 +130,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTFId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBRemoverAmigo)
-                    .addComponent(jLabel1))
+                .addComponent(JBRemoverAmigo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,12 +159,6 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             String nome = "";
             int telefone = 0;
 
-            if (this.JTFId.getText().length() <= 0) {
-                throw new Mensagem("ID deve ser número e maior que zero.");
-            } else {
-                id = Integer.parseInt(this.JTFId.getText());
-            }
-
             if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
@@ -202,7 +180,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             // envia os dados para o Aluno processar
             if (this.objetoamigo.updateAmigoBD(id, nome, telefone)) {
                 // limpa os campos
-                this.JTFId.setText("");
+
                 this.JTFNome.setText("");
                 this.JTFTelefone.setText("");
                 JOptionPane.showMessageDialog(null, "Amigo Alterado com Sucesso!");
@@ -238,7 +216,6 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             String nome = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 2).toString();
             String telefone = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 3).toString();
 
-            this.JTFId.setText(id);
             this.JTFNome.setText(nome);
             this.JTFTelefone.setText(telefone);
         }
@@ -274,10 +251,6 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             carregaTabela();
         }
     }//GEN-LAST:event_JBRemoverAmigoActionPerformed
-
-    private void JTFIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTFIdActionPerformed
 
     private void JTFTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFTelefoneActionPerformed
         // TODO add your handling code here:
@@ -341,11 +314,9 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     private javax.swing.JButton JBAtualizarAmigo;
     private javax.swing.JButton JBRemoverAmigo;
     private javax.swing.JToggleButton JBVoltar;
-    private javax.swing.JTextField JTFId;
     private javax.swing.JTextField JTFNome;
     private javax.swing.JTextField JTFTelefone;
     private javax.swing.JTable JTableAmigos;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
