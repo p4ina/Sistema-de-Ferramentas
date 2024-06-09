@@ -44,14 +44,14 @@ public class FerramentaDAO {
      // Getters 
     public String getFerramentaDAO(int ferramentaid) {
         String sql = "SELECT nome FROM db_ferramentas WHERE ferramentaid = ?";
-        String ferramenta = "";
+        String nome = "";
         try (Connection conn = conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Configura os parâmetros da query
             stmt.setInt(1, ferramentaid);
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
                 if (res.next()) {
-                    ferramenta = res.getString("ferramenta");
+                    nome = res.getString("ferramenta");
                 } else {
                     // Nenhum amigo foi encontrado, você pode lidar com isso aqui
                     System.out.println("Nenhuma ferramenta encontrado com o id: " + ferramentaid);
@@ -60,7 +60,7 @@ public class FerramentaDAO {
         } catch (SQLException e) {
             System.out.println("Erro ao buscar o nome do amigo: " + e.getMessage());
         }
-        return ferramenta;
+        return nome;
     }
 
     public String getMarcaDAO(int ferramentaid) {
@@ -85,14 +85,14 @@ public class FerramentaDAO {
     }
     public String getPrecoDAO(int ferramentaid) {
         String sql = "SELECT telefone FROM db_ferramentas WHERE ferramentaid = ?";
-        String preco = "";
+        String custo = "";
         try (Connection conn = conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Configura os parâmetros da query
             stmt.setInt(1, ferramentaid);
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
                 if (res.next()) {
-                    preco = res.getString("preço");
+                    custo = res.getString("preço");
                 } else {
                     // Nenhum amigo foi encontrado, você pode lidar com isso aqui
                     System.out.println("Nenhuma ferramenta encontrado com o preço: " + ferramentaid);
@@ -101,19 +101,19 @@ public class FerramentaDAO {
         } catch (SQLException e) {
             System.out.println("Erro ao buscar o preço da ferramenta: " + e.getMessage());
         }
-        return preco;
+        return custo;
     }
 
-    public int getFerramentaidDAO(String ferramenta, String marca, double preco) {
-        String sql = "SELECT COUNT(*) AS total FROM db_ferramentas WHERE ferramenta = ? AND marca = ? AND custo = ?";
+    public int getFerramentaidDAO(String nome, String marca, double custo) {
+        String sql = "SELECT COUNT(*) AS total FROM db_ferramentas WHERE nome = ? AND marca = ? AND custo = ?";
         int ferramentaid = 0;
 
         try (Connection conn = conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // Configura os parâmetros da query
-            stmt.setString(1, ferramenta);
+            stmt.setString(1, nome);
             stmt.setString(2, marca);
-            stmt.setDouble(3, preco);
+            stmt.setDouble(3, custo);
 
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
@@ -122,11 +122,11 @@ public class FerramentaDAO {
                     int totalAmigos = res.getInt("total");
                     if (totalAmigos > 0) {
                         // Pelo menos um amigo foi encontrado, vamos obter o amigoid
-                        sql = "SELECT amigoid FROM db_ferramentas WHERE ferramenta = ? AND marca = ? AND custo = ?";
+                        sql = "SELECT amigoid FROM db_ferramentas WHERE nome = ? AND marca = ? AND custo = ?";
                         try (PreparedStatement stmt2 = conn.prepareStatement(sql)) {
-                            stmt2.setString(1, ferramenta);
+                            stmt2.setString(1, nome);
                             stmt2.setString(2, marca);
-                            stmt.setDouble(3, preco);
+                            stmt.setDouble(3, custo);
 
                             // Executa a segunda query
                             ResultSet res2 = stmt2.executeQuery();
@@ -149,11 +149,11 @@ public class FerramentaDAO {
     // ----------
 
     // Setters
-    public void setFerramentaDAO(int ferramentaid, String novaFerramenta) {
-        String sql= "UPDATE db_ferramentas\n" + "SET ferramenta = (?)\n" + "WHERE ferramentaid = (?);";
+    public void setFerramentaDAO(int ferramentaid, String novoNome) {
+        String sql= "UPDATE db_ferramentas\n" + "SET nome = (?)\n" + "WHERE ferramentaid = (?);";
         try {
             PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
-            stmt.setString(1, novaFerramenta);
+            stmt.setString(1, novoNome);
             stmt.setInt(2, ferramentaid);
             stmt.execute();
             stmt.close();
@@ -177,11 +177,11 @@ public class FerramentaDAO {
         }
     }
     
-    public void setPrecoDAO(int ferramentaid, Double novoPreco) {
-        String sql = "\n" + "UPDATE db_ferramentas\n" + "SET preco = (?)\n" + "WHERE ferramentaid = (?);";
+    public void setPrecoDAO(int ferramentaid, Double novoCusto) {
+        String sql = "\n" + "UPDATE db_ferramentas\n" + "SET custo = (?)\n" + "WHERE ferramentaid = (?);";
         try {
             PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
-            stmt.setDouble(1, novoPreco);
+            stmt.setDouble(1, novoCusto);
             stmt.setInt(2, ferramentaid);
             stmt.execute();
             stmt.close();
@@ -199,10 +199,10 @@ public class FerramentaDAO {
             Statement stmt = conexao.getConnection().createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM db_ferramentas");
             while (res.next()) {
-                String ferramenta = res.getString("ferramenta");
+                String nome = res.getString("nome");
                 String marca = res.getString("marca");
-                double preco = res.getDouble("preço");
-                Ferramenta objeto = new Ferramenta(ferramenta, marca, preco);
+                double custo = res.getDouble("custo");
+                Ferramenta objeto = new Ferramenta(nome, marca, custo);
                 minhaLista.add(objeto);
             }
             stmt.close();
@@ -213,13 +213,13 @@ public class FerramentaDAO {
     }
 
     // Adiciona Amigos(objetos)
-    public void addFerramentaDAO(String ferramenta, String marca, double preco) {
-        String sql = "INSERT INTO db_ferramentas(ferramenta,marca, preco) VALUES(?,?,?)";
+    public void addFerramentaDAO(String nome, String marca, double custo) {
+        String sql = "INSERT INTO db_ferramentas(nome,marca, custo) VALUES(?,?,?)";
         try {
             PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
-            stmt.setString(1, ferramenta);
+            stmt.setString(1, nome);
             stmt.setString(2, marca);
-            stmt.setDouble(3, preco);
+            stmt.setDouble(3, custo);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
