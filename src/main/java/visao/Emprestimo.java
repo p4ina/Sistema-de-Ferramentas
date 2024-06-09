@@ -5,6 +5,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Amigo;
+import dao.AmigoDAO;
 import modelo.Ferramenta;
 import visao.TelaAmigo;
 import visao.TelaFerramenta;
@@ -14,8 +15,8 @@ import visao.RelatorioEmprestimo;
 
 public class Emprestimo extends javax.swing.JFrame {
 
-    private Amigo objetoAmigo;
-
+    private AmigoDAO objetoAmigo;
+AmigoDAO amigoDAO = new AmigoDAO();
     public Emprestimo() {
         initComponents();
     }
@@ -179,8 +180,8 @@ public class Emprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JBRelatorioAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRelatorioAmigoActionPerformed
-        RelatorioAmigo tela = new RelatorioAmigo();
-        tela.setVisible(true);
+                amigoDAO.getMinhaListaAmigoDAO();
+
         // TODO add your handling code here:
     }//GEN-LAST:event_JBRelatorioAmigoActionPerformed
 
@@ -209,7 +210,7 @@ public class Emprestimo extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.JCAmigo.getModel();
         modelo.setNumRows(0); // Posiciona na primeira linha da tabela
         // Carrega a lista de objetos aluno
-        ArrayList<Amigo> minhaLista = objetoAmigo.getMinhaLista();
+        ArrayList<Amigo> minhaLista = amigoDAO.getMinhaListaAmigoDAO();
         for (Amigo a : minhaLista) {
             modelo.addRow(new Object[]{
             
