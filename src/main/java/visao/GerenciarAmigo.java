@@ -163,8 +163,8 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     private void JBAtualizarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAtualizarAmigoActionPerformed
         String updateAmigo = JOptionPane.showInputDialog(null, "Nome:");
         String updateFone = JOptionPane.showInputDialog(null, "Telefone:");
-        Amigo updateAmigoBD = new Amigo(updateAmigo, updateFone);
-        updateAmigoBD.addAmigo();
+        Amigo a = new Amigo(updateAmigo, updateFone);
+        a.insertAmigoBD(updateFone, updateFone);
         
         getMinhaListaAmigoDAO();
             
@@ -220,6 +220,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         ArrayList<Amigo> minhaLista = amigoDAO.getMinhaListaAmigoDAO();
         for (Amigo a : minhaLista) {
             modelo.addRow(new Object[]{
+                a.getId(),
                 a.getNome(),
                 a.getTelefone(),});
         }
