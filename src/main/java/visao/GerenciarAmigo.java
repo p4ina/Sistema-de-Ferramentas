@@ -15,7 +15,8 @@ public class GerenciarAmigo extends javax.swing.JFrame {
 
     public GerenciarAmigo() {
         initComponents();
-        this.objetoamigo = new Amigo(); // carrega objetoamigo de amigo
+        this.amigoDAO = new AmigoDAO(); // carrega objetoamigo de amigo
+        this.getMinhaListaFerramentaDAO();
         Conexao conexao = new Conexao();
         Amigo amigo1 = new Amigo();
     ArrayList minhaLista = new ArrayList();
@@ -253,7 +254,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
             //
-            objetoamigo.maiorID();
+        amigoDAO.getMinhaListaAmigoDAO();
         }
     }//GEN-LAST:event_JBRemoverAmigoActionPerformed
 
@@ -270,11 +271,11 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JBVoltarActionPerformed
 
-    public void carregaTabela() {
+    public void getMinhaListaFerramentaDAO() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableAmigos.getModel();
         modelo.setNumRows(0); // Posiciona na primeira linha da tabela
         // Carrega a lista de objetos aluno
-        ArrayList<Amigo> minhaLista = objetoamigo.getMinhaLista();
+        ArrayList<Amigo> minhaLista = amigoDAO.getMinhaListaAmigoDAO();
         for (Amigo a : minhaLista) {
             modelo.addRow(new Object[]{
                 a.getId(),
