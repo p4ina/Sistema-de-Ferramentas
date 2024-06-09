@@ -32,15 +32,7 @@ public class FerramentaDAO {
         }
         return maiorID;
     }
-    private int procuraIndice(int id) {
-        int indice = -1;
-        for (int i = 0; i < AmigoDAO.minhaLista.size(); i++) {
-            if (AmigoDAO.minhaLista.get(i).getId() == id) {
-                indice = i;
-            }
-        }
-        return indice;
-    }
+   
      // Getters 
     public String getFerramentaDAO(int ferramentaid) {
         String sql = "SELECT nome FROM db_ferramentas WHERE ferramentaid = ?";

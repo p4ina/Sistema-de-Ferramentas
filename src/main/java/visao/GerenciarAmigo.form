@@ -34,10 +34,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="JTFTelefone" pref="202" max="32767" attributes="0"/>
                   <Component id="JTFNome" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="JTFAmigoId" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="JTFAmigoId" alignment="0" max="32767" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">

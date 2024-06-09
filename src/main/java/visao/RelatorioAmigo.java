@@ -1,5 +1,6 @@
 package visao;
 
+import dao.AmigoDAO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Amigo;
@@ -12,8 +13,8 @@ public final class RelatorioAmigo extends javax.swing.JFrame {
 
     public RelatorioAmigo() {
         initComponents();
-        this.objeto = new Amigo(); // carrega objetoamigo de amigo
-        this.carregaTabela();
+        AmigoDAO amg = new AmigoDAO(); // carrega objetoamigo de amigo
+        amg.getMinhaListaAmigoDAO();
     }
 
     @SuppressWarnings("unchecked")
@@ -85,17 +86,7 @@ public final class RelatorioAmigo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_JRelatorioAncestorAdded
 
-    public void carregaTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) this.JRelatorio.getModel();
-        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
-        // Carrega a lista de objetos aluno
-        ArrayList<Amigo> minhaLista = objeto.getMinhaLista();
-        for (Amigo a : minhaLista) {
-            modelo.addRow(new Object[]{
-                a.getNome(),
-                a.getTelefone(),});
-        }
-    }
+   
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

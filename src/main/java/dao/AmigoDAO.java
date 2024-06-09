@@ -1,56 +1,26 @@
+
 package dao;
 
 import java.sql.Connection;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.Amigo;
 
+
 public class AmigoDAO {
-
     Conexao conexao = new Conexao();
-
-    //lista que armazema os objetos
-    public static ArrayList<Amigo> minhaLista = new ArrayList<>();
-
-    //retorna o ArrayList
-    public static ArrayList<Amigo> getMinhaLista() {
-        return minhaLista;
-    }
-
-    //Modifica o ArrayList @param minhaLista Um ArrayList
-    public static void setMinhaLista(ArrayList<Amigo> minhaLista) {
-        AmigoDAO.minhaLista = minhaLista;
-    }
-
-    public static int maiorID() {
-        int maiorID = 0;
-        for (int i = 0; i < minhaLista.size(); i++) {
-            if (minhaLista.get(i).getId() > maiorID) {
-                maiorID = minhaLista.get(i).getId();
-            }
-        }
-        return maiorID;
-    }
+    ArrayList minhaLista = new ArrayList();
     
-    private int procuraIndice(int id) {
-        int indice = -1;
-        for (int i = 0; i < AmigoDAO.minhaLista.size(); i++) {
-            if (AmigoDAO.minhaLista.get(i).getId() == id) {
-                indice = i;
-            }
-        }
-        return indice;
-    }
-
     // Getters 
     public String getNomeDAO(int amigoid) {
         String sql = "SELECT nome FROM db_amigos WHERE amigoid = ?";
         String nome = "";
-        try (Connection conn = conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = conexao.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Configura os parâmetros da query
             stmt.setInt(1, amigoid);
             // Executa a query
@@ -67,11 +37,11 @@ public class AmigoDAO {
         }
         return nome;
     }
-
     public String getTelefoneDAO(int amigoid) {
         String sql = "SELECT telefone FROM db_amigos WHERE amigoid = ?";
         String telefone = "";
-        try (Connection conn = conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = conexao.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Configura os parâmetros da query
             stmt.setInt(1, amigoid);
             // Executa a query
@@ -88,12 +58,12 @@ public class AmigoDAO {
         }
         return telefone;
     }
-
     public int getAmigoidDAO(String nome, String telefone) {
         String sql = "SELECT COUNT(*) AS total FROM db_amigos WHERE nome = ? AND telefone = ?";
         int amigoid = 0;
 
-        try (Connection conn = conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = conexao.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // Configura os parâmetros da query
             stmt.setString(1, nome);
@@ -128,17 +98,16 @@ public class AmigoDAO {
         }
 
         return amigoid;
-    }
+    }    
     // ----------
-
+    
     // Setters
-    public void setNomeDAO(int amigoid, String nome, String telefone) {
-        String sql= "UPDATE db_amigos\n" + "SET nome = (?)\n" + "WHERE amigoid = (?);";
+    public void setNomeDAO(int amigoid, String novoNome){  
+    String sql = "UPDATE db_amigos\n" + "SET nome = (?)\n" + "WHERE amigoid = (?);";
         try {
             PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
-            stmt.setInt(1, amigoid);
-            stmt.setString(2, nome);
-            stmt.setString(3, telefone);
+            stmt.setString(1, novoNome);
+            stmt.setInt(2, amigoid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -146,7 +115,21 @@ public class AmigoDAO {
             throw new RuntimeException(erro);
         }
     }
-
+    
+    public void setTelefoneDAO(int amigoid, String novoTelefone){
+      String sql = "UPDATE db_amigos\n" + "SET telefone = (?)\n" + "WHERE amigoid = (?);";
+        try {
+            PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
+            stmt.setString(1, novoTelefone);
+            stmt.setInt(2, amigoid);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException erro) {
+            System.out.println("Erro:" + erro);
+            throw new RuntimeException(erro);
+        }
+    }
+    // ----------
     
     // Retorna a Lista de Amigos(objetos)
     public ArrayList getMinhaListaAmigoDAO() {
@@ -162,11 +145,11 @@ public class AmigoDAO {
             }
             stmt.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro!");
+            JOptionPane.showMessageDialog(null, "Deu ruim paizao!");
         }
         return minhaLista;
     }
-
+    
     // Adiciona Amigos(objetos)
     public void addAmigoDAO(String nome, String telefone) {
         String sql = "INSERT INTO db_amigos(nome,telefone) VALUES(?,?)";
@@ -181,7 +164,7 @@ public class AmigoDAO {
             throw new RuntimeException(erro);
         }
     }
-
+    
     // Deleta Amigos(objetos)
     public void delAmigoDAO(String nome, String telefone) {
         String sql = "DELETE FROM db_amigos WHERE nome = (?) AND telefone = (?);";
@@ -195,12 +178,5 @@ public class AmigoDAO {
             System.out.println("Erro:" + erro);
             throw new RuntimeException(erro);
         }
-        
-    }
- //metodo para atualizar os dados de algum amigo que ja existe
-        public boolean updateAmigoBD(int amigoid, String nome, String telefone) {
-        AmigoDAO objetoDAO = new AmigoDAO();
-        objetoDAO.setNomeDAO(amigoid, nome, telefone);
-        return true;
     }
 }

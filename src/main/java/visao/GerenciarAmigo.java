@@ -121,9 +121,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JTFTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                     .addComponent(JTFNome)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JTFAmigoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(JTFAmigoId))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -167,49 +165,59 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBAtualizarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAtualizarAmigoActionPerformed
-        int amigoid = 0;
-        String nome = "";
-        String telefone = "";
+         String nomeAmigo = JOptionPane.showInputDialog("Nome do amigo: ");
+        String telefoneAmigo = JOptionPane.showInputDialog("Telefone do amigo: ");
+        Amigo amigoEdit = new Amigo(nomeAmigo, telefoneAmigo);
+        int amigoid = amigoEdit.getAmigoid(nomeAmigo, telefoneAmigo);
+        if(amigoid == -1){
+           JOptionPane.showMessageDialog(null, "Dados não encontrados!"); 
+        }else{
+            // Definindo o look and feel do sistema operacional
+           try {
+               UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+           } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+               e.printStackTrace();
+           }
 
-        try {
-            // recebendo e validando dados da interface gráfica.
-            if (this.JTFAmigoId.getText().length() <= 0) {
-                throw new Mensagem("Idade deve ser número e maior que zero.");
-            } else {
-                amigoid = Integer.parseInt(this.JTFTelefone.getText());
-            }
-            
-            if (this.JTFNome.getText().length() < 2) {
-                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
-            } else {
-                nome = this.JTFNome.getText();
-            }
+           // Opções de botões
+           String[] options = {"Nome", "Telefone", "Cancelar"};
 
-            if (this.JTFTelefone.getText().length() < 2) {
-                throw new Mensagem("Idade deve ser número e maior que zero.");
-            } else {
-                telefone = this.JTFTelefone.getText();
-            }
+           // Mensagem da caixa de diálogo
+           String message = "Qual dado você gostaria de alterar?";
 
-            // envia os dados para o Aluno processar
-            if (this.amigoDAO.updateAmigoBD(amigoid, nome, telefone)) {
-                // limpa os campos
-                this.JTFAmigoId.setText("");
-                this.JTFNome.setText("");
-                this.JTFTelefone.setText("");
-                JOptionPane.showMessageDialog(null, "Amigo Alterado com Sucesso!");
+           // Título da caixa de diálogo
+           String title = "Editando dados de amigo";
 
-            }
-            // Exibe no console o aluno cadastrado
-            System.out.println(this.objetoamigo.getMinhaLista().toString());
-        } catch (Mensagem erro) {
-            JOptionPane.showMessageDialog(null, erro.getMessage());
-        } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um número válido.");
-        } finally {
-            // atualiza a tabela.
+           // Exibindo o JOptionPane com botões personalizados
+           int option = JOptionPane.showOptionDialog(
+                   null,                                 // Componente pai
+                   message,                              // Mensagem
+                   title,                                // Título
+                   JOptionPane.YES_NO_CANCEL_OPTION,     // Tipo de opção
+                   JOptionPane.QUESTION_MESSAGE,         // Tipo de mensagem
+                   null,                                 // Ícone
+                   options,                              // Botões personalizados
+                   options[0]                            // Botão padrão
+           );
+
+           // Tratamento da opção selecionada
+           switch (option) {
+               case 0: // Salvar
+                   String novoNome = JOptionPane.showInputDialog("Novo nome: ");
+                   amigoEdit.setNome(novoNome);
+                   break;
+               case 1: // Não Salvar
+                   String novoTelefone = JOptionPane.showInputDialog("Novo telefone: ");
+                   amigoEdit.setTelefone(novoTelefone);
+                   break;
+               case 2: // Cancelar
+                   JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                   break;
+               default:
+                   System.out.println("Nenhuma opção selecionada");
+                   break;
+           }
             getMinhaListaAmigoDAO();
-
         }
 
         // TODO add your handling code here:
@@ -228,8 +236,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     private void JTableAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableAmigosMouseClicked
         if (this.JTableAmigos.getSelectedRow() != -1) {
             String nome = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 1).toString();
-            String telefone = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 2).toString();
-
+            String telefone = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 2    ).toString();
             this.JTFNome.setText(nome);
             this.JTFTelefone.setText(telefone);
         }
@@ -264,7 +271,6 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         ArrayList<Amigo> minhaLista = amigoDAO.getMinhaListaAmigoDAO();
         for (Amigo a : minhaLista) {
             modelo.addRow(new Object[]{
-                a.getId(),
                 a.getNome(),
                 a.getTelefone(),});
         }

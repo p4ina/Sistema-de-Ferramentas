@@ -156,41 +156,11 @@ public class TelaAmigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBCadastrarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarAmigoActionPerformed
-        String nome = "";
-        String telefone = "";
+        String addAmigo = JOptionPane.showInputDialog(null, "Nome:");
+        String addFone = JOptionPane.showInputDialog(null, "Telefone:");
+        Amigo amigoAdd = new Amigo(addAmigo, addFone);
         
-        try {
-            // recebendo e validando dados da interface gráfica.
-            if (this.JTFNomeAmigo.getText().length() < 2) {
-                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
-            } else {
-                nome = this.JTFNomeAmigo.getText();
-            }
-
-            if (this.JTFTelefone.getText().length() <= 0) {
-                throw new Mensagem("telefone deve ser número e maior que zero.");
-            } else {
-                telefone = this.JTFTelefone.getText();
-            }
-            // envia os dados para o Controlador cadastrar
-            if (this.objetoamigo.insertAmigoBD(nome, telefone)) {
-                JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
-                // limpa campos da interface
-                this.JTFNomeAmigo.setText("");
-                this.JTFTelefone.setText("");
-            }
-            // Exibie no console o aluno cadastrado
-            System.out.println(this.objetoamigo.getMinhaLista().toString());
-
-        } catch (Mensagem erro) {
-            JOptionPane.showMessageDialog(null, erro.getMessage());
-        } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um número válido.");
-
-        }
-
-       Amigo amigo = new Amigo();
-       amigo.insertAmigoBD(nome, telefone);
+        amigoAdd.addAmigo();
     }//GEN-LAST:event_JBCadastrarAmigoActionPerformed
 
     private void JTFNomeAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeAmigoActionPerformed
