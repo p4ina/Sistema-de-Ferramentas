@@ -25,7 +25,7 @@ public class Amigo {
         this(0, "", 0, 0);
     }
 
-    //getters e setters para os ATRIBUTOS DEFINIDOS
+    //getters e setters para os atributos definidos
     public String getNome() {
         return nome;
     }
