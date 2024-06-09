@@ -132,12 +132,13 @@ public class AmigoDAO {
     // ----------
 
     // Setters
-    public void setNomeDAO(int amigoid, String novoNome) {
+    public void setNomeDAO(int amigoid, String novoNome, String novoTelefone) {
         String sql= "UPDATE db_amigos\n" + "SET nome = (?)\n" + "WHERE amigoid = (?);";
         try {
             PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
-            stmt.setString(1, novoNome);
-            stmt.setInt(2, amigoid);
+            stmt.setInt(1, amigoid);
+            stmt.setString(2, novoNome);
+            stmt.setString(3, novoTelefone);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -146,21 +147,7 @@ public class AmigoDAO {
         }
     }
 
-    public void setTelefoneDAO(int amigoid, String novoTelefone) {
-        String sql = "\n" + "UPDATE db_amigos\n" + "SET telefone = (?)\n" + "WHERE amigoid = (?);";
-        try {
-            PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
-            stmt.setString(1, novoTelefone);
-            stmt.setInt(2, amigoid);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
-    }
-    // ----------
-
+    
     // Retorna a Lista de Amigos(objetos)
     public ArrayList getMinhaListaAmigoDAO() {
         minhaLista.clear(); // Limpa nosso ArrayList

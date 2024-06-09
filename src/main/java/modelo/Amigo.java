@@ -77,17 +77,13 @@ public class Amigo {
     }
 
     //metodo para atualizar os dados de algum amigo que ja existe
-    public boolean updateTelefoneBD(int amigoid, String novoTelefone) {
+        public boolean updateAmigoBD(int amigoid, String novoNome, String novoTelefone) {
         AmigoDAO objetoDAO = new AmigoDAO();
-        objetoDAO.setTelefoneDAO(amigoid, novoTelefone);
+        objetoDAO.setNomeDAO(amigoid, novoNome, novoTelefone);
         return true;
     }
    
-    public boolean updateAmigoBD(int amigoid, String nome) {
-        AmigoDAO objetoDAO = new AmigoDAO();
-        objetoDAO.setNomeDAO(amigoid, nome);
-        return true;
-    }
+    
     //metodo para encontrar algum amigo pelo seu id
     private int procuraIndice(int id) {
         int indice = -1;

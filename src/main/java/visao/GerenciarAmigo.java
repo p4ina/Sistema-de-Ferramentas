@@ -4,6 +4,8 @@ import dao.AmigoDAO;
 import dao.Conexao;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import visao.Mensagem;
 import modelo.Amigo;
@@ -163,10 +165,10 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         String updateFone = JOptionPane.showInputDialog(null, "Telefone:");
         Amigo updateAmigoBD = new Amigo(updateAmigo, updateFone);
         updateAmigoBD.addAmigo();
-
+        
         getMinhaListaAmigoDAO();
-        getMinhaListaAmigoDAO();
-        // TODO add your handling code here:
+            
+                // TODO add your handling code here:
     }//GEN-LAST:event_JBAtualizarAmigoActionPerformed
 
     private void JTableAmigosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JTableAmigosAncestorAdded
@@ -218,7 +220,6 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         ArrayList<Amigo> minhaLista = amigoDAO.getMinhaListaAmigoDAO();
         for (Amigo a : minhaLista) {
             modelo.addRow(new Object[]{
-                a.getId(),
                 a.getNome(),
                 a.getTelefone(),});
         }
