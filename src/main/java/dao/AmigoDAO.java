@@ -208,5 +208,6 @@ public class AmigoDAO {
             System.out.println("Erro:" + erro);
             throw new RuntimeException(erro);
         }
+        
     }
 }

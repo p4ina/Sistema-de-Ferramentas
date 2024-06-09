@@ -228,34 +228,10 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     }//GEN-LAST:event_JTableAmigosMouseClicked
 
     private void JBRemoverAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRemoverAmigoActionPerformed
-        try {
-            //
-            int id = 0;
-            if (this.JTableAmigos.getSelectedRow() == -1) {
-                throw new Mensagem("Primeiro Selecione um Amigo para Apagar");
-            } else {
-                id = Integer.parseInt(this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 0).toString());
-            }
-
-            // 
-            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar este Amigo ?");
-
-            if (respostaUsuario == 0) {
-                if (this.objetoamigo.delAmigoDAO(id)) {
-                    this.JTFNome.setText("");
-                    this.JTFTelefone.setText("");
-
-                    JOptionPane.showMessageDialog(rootPane, "Amigo Apagado com Sucesso!");
-                }
-            }
-            // atualiza a tabela.
-            System.out.println(this.objetoamigo.getMinhaLista().toString());
-        } catch (Mensagem erro) {
-            JOptionPane.showMessageDialog(null, erro.getMessage());
-        } finally {
-            //
-        amigoDAO.getMinhaListaAmigoDAO();
-        }
+       String nome = JOptionPane.showInputDialog(null, "Nome:");
+        String telefone = JOptionPane.showInputDialog(null, "Telefone:");
+        Amigo amigo = new Amigo(nome, telefone);
+        amigo.delAmigoDAO(WIDTH);
     }//GEN-LAST:event_JBRemoverAmigoActionPerformed
 
     private void JTFTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFTelefoneActionPerformed
