@@ -20,7 +20,7 @@ public class Amigo {
         this.ferramentasPegas = ferramentasPegas;
     }
 
-    //construtor padrão
+    //CONSTRUTOR PADRÃO
     public Amigo() {
         this(0, "", 0, 0);
     }
