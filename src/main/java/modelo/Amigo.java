@@ -31,6 +31,8 @@ public class Amigo {
     public int getId(){
         return amigo.getAmigoidDAO(nome, telefone);
     }
+ 
+    
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -66,10 +68,12 @@ public class Amigo {
     }
 
     //metodo para deletar um amigo
-    public boolean delAmigoDAO(int id) {
-        int indice = this.procuraIndice(id);
-        AmigoDAO.minhaLista.remove(indice);
-        return true;
+    public void delAmigo(){
+        amigo.delAmigoDAO(this.nome, this.telefone);
+    }
+    // Adiciona o amigo ao banco de dados
+    public void addAmigo(){
+        amigo.addAmigoDAO(this.nome, this.telefone);
     }
 
     //metodo para atualizar os dados de algum amigo que ja existe
@@ -105,6 +109,8 @@ public class Amigo {
     public int maiorID() {
         return AmigoDAO.maiorID();
     }
+
+   
     
 
 }

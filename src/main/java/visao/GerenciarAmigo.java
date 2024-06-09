@@ -5,7 +5,7 @@ import dao.Conexao;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import visao.Mensagem; 
+import visao.Mensagem;
 import modelo.Amigo;
 
 public class GerenciarAmigo extends javax.swing.JFrame {
@@ -16,11 +16,10 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     public GerenciarAmigo() {
         initComponents();
         this.amigoDAO = new AmigoDAO(); // carrega objetoamigo de amigo
-        this.getMinhaListaFerramentaDAO();
+        this.getMinhaListaAmigoDAO();
         Conexao conexao = new Conexao();
         Amigo amigo1 = new Amigo();
-    ArrayList minhaLista = new ArrayList();
-        
+        ArrayList minhaLista = new ArrayList();
 
     }
 
@@ -160,50 +159,13 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBAtualizarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAtualizarAmigoActionPerformed
-        try {
-            // recebe e valida os dados da interface gráfica.
-            int id = 0;
-            String nome = "";
-            String telefone = "";
+        String updateAmigo = JOptionPane.showInputDialog(null, "Nome:");
+        String updateFone = JOptionPane.showInputDialog(null, "Telefone:");
+        Amigo updateAmigoBD = new Amigo(updateAmigo, updateFone);
+        updateAmigoBD.addAmigo();
 
-            if (this.JTFNome.getText().length() < 2) {
-                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
-            } else {
-                nome = this.JTFNome.getText();
-            }
-
-            if (this.JTFTelefone.getText().length() <= 0) {
-                throw new Mensagem("telefone deve ser número e maior que zero.");
-            } else {
-                telefone = this.JTFTelefone.getText();
-            }
-
-            if (this.JTableAmigos.getSelectedRow() == -1) {
-                throw new Mensagem("Primeiro Selecione um Amigo para Alterar");
-            } else {
-                id = Integer.parseInt(this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 0).toString());
-            }
-
-            // envia os dados para o Aluno processar
-            if (this.objetoamigo.updateAmigoBD(id, nome)) {
-                // limpa os campos
-
-                this.JTFNome.setText("");
-                this.JTFTelefone.setText("");
-                JOptionPane.showMessageDialog(null, "Amigo Alterado com Sucesso!");
-
-            }
-            // Exibe no console o aluno cadastrado
-            System.out.println(this.amigoDAO.getMinhaListaAmigoDAO().toString());
-        } catch (Mensagem erro) {
-            JOptionPane.showMessageDialog(null, erro.getMessage());
-        } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um número válido.");
-        } finally {
-            // atualiza a tabela
-        amigoDAO.getMinhaListaAmigoDAO();
-        }
-
+        getMinhaListaAmigoDAO();
+        getMinhaListaAmigoDAO();
         // TODO add your handling code here:
     }//GEN-LAST:event_JBAtualizarAmigoActionPerformed
 
@@ -221,17 +183,19 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         if (this.JTableAmigos.getSelectedRow() != -1) {
             String nome = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 1).toString();
             String telefone = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 2).toString();
-            
+
             this.JTFNome.setText(nome);
             this.JTFTelefone.setText(telefone);
         }
     }//GEN-LAST:event_JTableAmigosMouseClicked
 
     private void JBRemoverAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRemoverAmigoActionPerformed
-       String nome = JOptionPane.showInputDialog(null, "Nome:");
+        String nome = JOptionPane.showInputDialog(null, "Nome:");
         String telefone = JOptionPane.showInputDialog(null, "Telefone:");
-        Amigo amigo = new Amigo(nome, telefone);
-        amigo.delAmigoDAO(WIDTH);
+        Amigo amigoDel = new Amigo(nome, telefone);
+        amigoDel.delAmigo();
+
+        getMinhaListaAmigoDAO();
     }//GEN-LAST:event_JBRemoverAmigoActionPerformed
 
     private void JTFTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFTelefoneActionPerformed
@@ -247,7 +211,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JBVoltarActionPerformed
 
-    public void getMinhaListaFerramentaDAO() {
+    public void getMinhaListaAmigoDAO() {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableAmigos.getModel();
         modelo.setNumRows(0); // Posiciona na primeira linha da tabela
         // Carrega a lista de objetos aluno
