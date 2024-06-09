@@ -161,12 +161,45 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBAtualizarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAtualizarAmigoActionPerformed
-        String updateAmigo = JOptionPane.showInputDialog(null, "Nome:");
-        String updateFone = JOptionPane.showInputDialog(null, "Telefone:");
-        Amigo a = new Amigo(updateAmigo, updateFone);
-        a.insertAmigoBD(updateFone, updateFone);
-        
-        getMinhaListaAmigoDAO();
+            int id = 0;
+            String nome = "";
+            int telefone = 0;
+            
+        try {
+            // recebendo e validando dados da interface gráfica.
+            
+
+            if (this.JTFNome.getText().length() < 2) {
+                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFNome.getText();
+            }
+
+            if (this.JTFTelefone.getText().length() <= 0) {
+                throw new Mensagem("Idade deve ser número e maior que zero.");
+            } else {
+                telefone = Integer.parseInt(this.JTFTelefone.getText());
+            }
+
+            // envia os dados para o Aluno processar
+            if (this.objetoamigo.updateAmigoBD(nome, telefone)) {
+                // limpa os campos
+                this.JTFNome.setText("");
+                this.JTFTelefone.setText("");
+                JOptionPane.showMessageDialog(null, "Amigo Alterado com Sucesso!");
+
+            }
+            // Exibe no console o aluno cadastrado
+            System.out.println(this.objetoamigo.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        } finally {
+            // atualiza a tabela.
+                    getMinhaListaAmigoDAO();
+
+        }
             
                 // TODO add your handling code here:
     }//GEN-LAST:event_JBAtualizarAmigoActionPerformed

@@ -61,7 +61,7 @@ public class Amigo {
 
     //metodo para inserir um novo amigo no BD
     public boolean insertAmigoBD(String nome, String telefone) {
-        int id = this.maiorID() - 1;
+        int id = this.maiorID() + 1;
         AmigoDAO objetoDAO = new AmigoDAO();
         objetoDAO.addAmigoDAO(nome,telefone);
         return true;
@@ -77,7 +77,7 @@ public class Amigo {
     }
 
     //metodo para atualizar os dados de algum amigo que ja existe
-        public boolean updateAmigoBD(int amigoid, String nome, String telefone) {
+        public boolean updateAmigoBD(String nome, int amigoid) {
         AmigoDAO objetoDAO = new AmigoDAO();
         objetoDAO.setNomeDAO(amigoid, nome, telefone);
         return true;
