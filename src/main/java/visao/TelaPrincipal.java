@@ -128,8 +128,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_JBAmigoActionPerformed
 
     private void JBEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEmprestimoActionPerformed
-        Emprestimo tela = new Emprestimo();
-        tela.setVisible(true);
+        Emprestimo objeto = new Emprestimo();
+        objeto.setVisible(true);
             // TODO add your handling code here:
     }//GEN-LAST:event_JBEmprestimoActionPerformed
 

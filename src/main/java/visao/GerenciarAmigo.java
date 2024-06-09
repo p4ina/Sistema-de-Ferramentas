@@ -157,7 +157,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             // recebe e valida os dados da interface gráfica.
             int id = 0;
             String nome = "";
-            int telefone = 0;
+            String telefone = "";
 
             if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
@@ -168,7 +168,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             if (this.JTFTelefone.getText().length() <= 0) {
                 throw new Mensagem("telefone deve ser número e maior que zero.");
             } else {
-                telefone = Integer.parseInt(this.JTFTelefone.getText());
+                telefone = this.JTFTelefone.getText();
             }
 
             if (this.JTableAmigos.getSelectedRow() == -1) {
@@ -178,7 +178,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             }
 
             // envia os dados para o Aluno processar
-            if (this.objetoamigo.updateAmigoBD(id, nome, telefone)) {
+            if (this.objetoamigo.updateAmigoBD(id, nome)) {
                 // limpa os campos
 
                 this.JTFNome.setText("");
@@ -272,7 +272,6 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         ArrayList<Amigo> minhaLista = objetoamigo.getMinhaLista();
         for (Amigo a : minhaLista) {
             modelo.addRow(new Object[]{
-                a.getId(),
                 a.getNome(),
                 a.getTelefone(),});
         }

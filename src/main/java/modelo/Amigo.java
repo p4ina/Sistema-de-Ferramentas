@@ -6,23 +6,22 @@ import dao.AmigoDAO;
 public class Amigo {
 
     //atributos da classe
-    private int id;
+
     private String nome;
-    private int telefone;
-    private int ferramentasPegas;
-    public Amigo getMinhaLista;
+    private String telefone;
+        private AmigoDAO amigo = new AmigoDAO();
+
 
     //construtor principal
-    public Amigo(int id, String nome, int telefone, int ferramentasPegas) {
-        this.id = id;
+    public Amigo(String nome, String telefone) {
+ 
         this.nome = nome;
         this.telefone = telefone;
-        this.ferramentasPegas = ferramentasPegas;
     }
 
     //construtor padrão
     public Amigo() {
-        this(0, "", 0, 0);
+        this( "", "");
     }
 
     //getters e setters para os atributos definidos
@@ -34,27 +33,19 @@ public class Amigo {
         this.nome = nome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     //metodo para retornar o objeto
     @Override
     public String toString() {
-        return "Amigo{" + "id=" + id + ", nome=" + nome + ", telefone=" + telefone
-                + ", ferramentasPegas=" + ferramentasPegas + '}';
+        return "Amigo{"+ ", nome=" + nome + ", telefone=" + telefone +'}';
 
         //metodo para obter a lista de amigos a partir do DAO
     }
@@ -64,10 +55,10 @@ public class Amigo {
     }
 
     //metodo para inserir um novo amigo no BD
-    public boolean insertAmigoBD(String nome, int ind) {
+    public boolean insertAmigoBD(String nome, String telefone) {
         int id = this.maiorID() + 1;
-        Amigo objeto = new Amigo(id, nome, ind, ferramentasPegas);
-        AmigoDAO.minhaLista.add(objeto);
+        AmigoDAO objetoDAO = new AmigoDAO();
+        objetoDAO.addAmigoDAO(nome,telefone);
         return true;
     }
 
@@ -79,13 +70,17 @@ public class Amigo {
     }
 
     //metodo para atualizar os dados de algum amigo que ja existe
-    public boolean updateAmigoBD(int id, String nome, int telefone) {
-        Amigo objeto = new Amigo(id, nome, telefone, ferramentasPegas);
-        int indice = this.procuraIndice(id);
-        AmigoDAO.minhaLista.set(indice, objeto);
+    public boolean updateTelefoneBD(int amigoid, String novoTelefone) {
+        AmigoDAO objetoDAO = new AmigoDAO();
+        objetoDAO.setTelefoneDAO(amigoid, novoTelefone);
         return true;
     }
-
+   
+    public boolean updateAmigoBD(int amigoid, String nome) {
+        AmigoDAO objetoDAO = new AmigoDAO();
+        objetoDAO.setNomeDAO(amigoid, nome);
+        return true;
+    }
     //metodo para encontrar algum amigo pelo seu id
     private int procuraIndice(int id) {
         int indice = -1;

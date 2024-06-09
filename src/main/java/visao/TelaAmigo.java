@@ -1,18 +1,22 @@
 package visao;
 
+import dao.AmigoDAO;
 import javax.swing.*;
 import visao.Mensagem;
 import modelo.Amigo;
 import visao.TelaAmigo;
+import visao.Emprestimo;
+
 
 public class TelaAmigo extends javax.swing.JFrame {
 
     private Amigo objetoamigo;
-
+    private Emprestimo JCAmigo;
     public TelaAmigo() {
         initComponents();
         this.objetoamigo = new Amigo();
     }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -30,7 +34,7 @@ public class TelaAmigo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         JBCadastrarAmigo = new javax.swing.JButton();
-        JTFNome = new javax.swing.JTextField();
+        JTFNomeAmigo = new javax.swing.JTextField();
         JTFTelefone = new javax.swing.JTextField();
         JBGerenciarAmigo = new javax.swing.JButton();
 
@@ -88,9 +92,9 @@ public class TelaAmigo extends javax.swing.JFrame {
             }
         });
 
-        JTFNome.addActionListener(new java.awt.event.ActionListener() {
+        JTFNomeAmigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFNomeActionPerformed(evt);
+                JTFNomeAmigoActionPerformed(evt);
             }
         });
 
@@ -114,7 +118,7 @@ public class TelaAmigo extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(JTFNomeAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,7 +139,7 @@ public class TelaAmigo extends javax.swing.JFrame {
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTFNomeAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,28 +157,26 @@ public class TelaAmigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBCadastrarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarAmigoActionPerformed
+        String nome = "";
+        String telefone = "";
         try {
             // recebendo e validando dados da interface gráfica.
-            int id = 0;
-            String nome = "";
-            int telefone = 0;
-
-            if (this.JTFNome.getText().length() < 2) {
+            if (this.JTFNomeAmigo.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
-                nome = this.JTFNome.getText();
+                nome = this.JTFNomeAmigo.getText();
             }
 
             if (this.JTFTelefone.getText().length() <= 0) {
                 throw new Mensagem("telefone deve ser número e maior que zero.");
             } else {
-                telefone = Integer.parseInt(this.JTFTelefone.getText());
+                telefone = this.JTFTelefone.getText();
             }
             // envia os dados para o Controlador cadastrar
             if (this.objetoamigo.insertAmigoBD(nome, telefone)) {
                 JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
                 // limpa campos da interface
-                this.JTFNome.setText("");
+                this.JTFNomeAmigo.setText("");
                 this.JTFTelefone.setText("");
             }
             // Exibie no console o aluno cadastrado
@@ -187,12 +189,14 @@ public class TelaAmigo extends javax.swing.JFrame {
 
         }
 
-        // TODO add your handling code here:
+       Amigo amigo = new Amigo();
+       amigo.insertAmigoBD(nome, telefone);
     }//GEN-LAST:event_JBCadastrarAmigoActionPerformed
 
-    private void JTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeActionPerformed
+    private void JTFNomeAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeAmigoActionPerformed
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_JTFNomeActionPerformed
+    }//GEN-LAST:event_JTFNomeAmigoActionPerformed
 
     private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
         this.dispose();
@@ -244,7 +248,7 @@ public class TelaAmigo extends javax.swing.JFrame {
     private javax.swing.JButton JBCadastrarAmigo;
     private javax.swing.JButton JBGerenciarAmigo;
     private javax.swing.JButton JBVoltar;
-    private javax.swing.JTextField JTFNome;
+    private javax.swing.JTextField JTFNomeAmigo;
     private javax.swing.JTextField JTFTelefone;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFrame jFrame1;
@@ -257,4 +261,5 @@ public class TelaAmigo extends javax.swing.JFrame {
     private java.awt.Menu menu2;
     private java.awt.MenuBar menuBar1;
     // End of variables declaration//GEN-END:variables
+
 }
