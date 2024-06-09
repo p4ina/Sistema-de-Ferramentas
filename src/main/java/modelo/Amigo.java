@@ -9,7 +9,7 @@ public class Amigo {
 
     private String nome;
     private String telefone;
-        private AmigoDAO amigo = new AmigoDAO();
+    private AmigoDAO amigo = new AmigoDAO();
 
 
     //construtor principal
@@ -27,6 +27,9 @@ public class Amigo {
     //getters e setters para os atributos definidos
     public String getNome() {
         return nome;
+    }
+    public int getId(){
+        return amigo.getAmigoidDAO(nome, telefone);
     }
 
     public void setNome(String nome) {
@@ -63,7 +66,7 @@ public class Amigo {
     }
 
     //metodo para deletar um amigo
-    public boolean deleteAmigoBD(int id) {
+    public boolean delAmigoDAO(int id) {
         int indice = this.procuraIndice(id);
         AmigoDAO.minhaLista.remove(indice);
         return true;

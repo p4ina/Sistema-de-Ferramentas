@@ -212,9 +212,8 @@ public class GerenciarAmigo extends javax.swing.JFrame {
 
     private void JTableAmigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableAmigosMouseClicked
         if (this.JTableAmigos.getSelectedRow() != -1) {
-            String id = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 1).toString();
-            String nome = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 2).toString();
-            String telefone = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 3).toString();
+            String nome = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 1).toString();
+            String telefone = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 2).toString();
 
             this.JTFNome.setText(nome);
             this.JTFTelefone.setText(telefone);
@@ -235,7 +234,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar este Amigo ?");
 
             if (respostaUsuario == 0) {
-                if (this.objetoamigo.deleteAmigoBD(id)) {
+                if (this.objetoamigo.delAmigoDAO(id)) {
                     this.JTFNome.setText("");
                     this.JTFTelefone.setText("");
 

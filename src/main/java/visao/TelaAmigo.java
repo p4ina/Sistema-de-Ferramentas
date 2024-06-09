@@ -159,6 +159,7 @@ public class TelaAmigo extends javax.swing.JFrame {
     private void JBCadastrarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarAmigoActionPerformed
         String nome = "";
         String telefone = "";
+        
         try {
             // recebendo e validando dados da interface gráfica.
             if (this.JTFNomeAmigo.getText().length() < 2) {

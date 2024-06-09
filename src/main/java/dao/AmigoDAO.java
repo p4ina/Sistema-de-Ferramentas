@@ -35,6 +35,16 @@ public class AmigoDAO {
         }
         return maiorID;
     }
+    
+    private int procuraIndice(int id) {
+        int indice = -1;
+        for (int i = 0; i < AmigoDAO.minhaLista.size(); i++) {
+            if (AmigoDAO.minhaLista.get(i).getId() == id) {
+                indice = i;
+            }
+        }
+        return indice;
+    }
 
     // Getters 
     public String getNomeDAO(int amigoid) {
@@ -123,11 +133,7 @@ public class AmigoDAO {
 
     // Setters
     public void setNomeDAO(int amigoid, String novoNome) {
-        String sql= 
-                """
-                 UPDATE db_amigos
-                 SET nome = (?)
-                 WHERE amigoid = (?);""";
+        String sql= "UPDATE db_amigos\n" + "SET nome = (?)\n" + "WHERE amigoid = (?);";
         try {
             PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
             stmt.setString(1, novoNome);
@@ -141,10 +147,7 @@ public class AmigoDAO {
     }
 
     public void setTelefoneDAO(int amigoid, String novoTelefone) {
-        String sql = """
-                 UPDATE db_amigos
-                 SET telefone = (?)
-                 WHERE amigoid = (?);""";
+        String sql = "\n" + "UPDATE db_amigos\n" + "SET telefone = (?)\n" + "WHERE amigoid = (?);";
         try {
             PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
             stmt.setString(1, novoTelefone);
