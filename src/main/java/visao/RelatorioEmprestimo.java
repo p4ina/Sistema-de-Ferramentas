@@ -10,8 +10,6 @@ public class RelatorioEmprestimo extends javax.swing.JFrame {
 
     public RelatorioEmprestimo() {
         initComponents();
-        this.objetoemprestimo = new Emprestimo();
-        this.carregaTabela();
     }
 
     @SuppressWarnings("unchecked")
@@ -35,6 +33,15 @@ public class RelatorioEmprestimo extends javax.swing.JFrame {
                 "Nome", "Ferramenta", "Devolvida"
             }
         ));
+        JRelatorioEmprestimo.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                JRelatorioEmprestimoAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(JRelatorioEmprestimo);
 
         JBVoltar.setText("Voltar");
@@ -70,18 +77,12 @@ public class RelatorioEmprestimo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_JBVoltarActionPerformed
 
-    public void carregaTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) this.JRelatorioEmprestimo.getModel();
-        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
-        // Carrega a lista de objetos aluno
-        ArrayList<Emprestimo> minhaLista = objetoemprestimo.getMinhaLista();
-        for (Emprestimo a : minhaLista) {
-            modelo.addRow(new Object[]{
-                a.getNome(),
-                a.getFerramenta(),
-                a.getDevolvida(),});
-        }
-    }
+    private void JRelatorioEmprestimoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JRelatorioEmprestimoAncestorAdded
+       
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JRelatorioEmprestimoAncestorAdded
+
+    
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -1,112 +1,72 @@
 package modelo;
 
-import java.util.ArrayList;
 import dao.FerramentaDAO;
+import java.util.ArrayList;
 
+public class Ferramenta{
 
-public class Ferramenta {
-    //atributos da classe
-
-    private String nome;
-    private String marca;
-    private Double custo;
-    private FerramentaDAO ferramentaDAO = new FerramentaDAO();
-    //construtor 
-    private int id;
-
-    public Ferramenta(String nome, String marca, Double custo) {
-        this.nome = nome;
-        this.marca = marca;
-        this.custo = custo;
-    }
-
-    //construtor padrão
-    public Ferramenta() {
+    // Atributos
+    private String Nome;
+    private String Marca;
+    private Double Custo;
+    private FerramentaDAO ferramenta = new FerramentaDAO();
+        
+    // Construtor Default
+    public Ferramenta(){
         this("", "", 0.0);
     }
-
-    //getters e setters
-    public String getNome() {
-        return nome;
+    // Construtor 
+    public Ferramenta(String Nome, String Marca, Double Custo){
+        this.Nome = Nome;
+        this.Marca = Marca;
+        this.Custo = Custo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    // Getters 
+    public String getNome(){
+        return this.Nome;
     }
-
-    public String getMarca() {
-        return marca;
+    public String getMarca(){
+        return this.Marca;
     }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public Double getCusto(){
+        return this.Custo;
     }
-
-    public Double getCusto() {
-        return custo;
+    public int getFerramentaid(String nome, String marca){
+        return ferramenta.getFerramentaidDAO(nome, marca);
     }
-
-    public void setCusto(Double custo) {
-        this.custo = custo;
+    // ----------
+    
+    // Setters
+    public void setNome(String nome){
+        String auxNome = this.Nome;
+        this.Nome = nome;
+        ferramenta.setNomeDAO(this.getFerramentaid(auxNome, this.Marca), nome);
     }
-
-  public int getId(){
-        return ferramentaDAO.getFerramentaidDAO(nome, marca, custo);
+    public void setMarca(String marca){
+        String auxMarca = this.Marca;
+        this.Marca = marca;
+        ferramenta.setMarcaDAO(this.getFerramentaid(this.Nome, auxMarca), marca);
     }
-
-    // Método para retornar uma representação em string do objeto
-    @Override
-    public String toString() {
-        return "Ferramenta{" + ", ferramenta=" + nome + ", marca=" + marca + ", preco=" + custo + '}';
+    public void setCusto(Double custo){
+        this.Custo = custo;
+        ferramenta.setCustoDAO(this.getFerramentaid(this.Nome, this.Marca), custo);
     }
-
-    //Metodo para obter obter a lista de ferramentas pelo DAO
-    public ArrayList<Ferramenta> getMinhaLista() {
-        return FerramentaDAO.getMinhaLista();
+    // ----------
+    
+    // Adiciona ferramenta ao banco de dados
+    public void addFerramenta(){
+        ferramenta.addFerramentaDAO(this.Nome, this.Marca, this.Custo);
     }
-
-    //metodo para inserir uma nova ferramenta
-    public boolean insertFerramentaBD(String nome, String marca, double custo) {
-        int id = this.maiorID() + 1;
-       FerramentaDAO objetoDAO = new FerramentaDAO();
-       objetoDAO.addFerramentaDAO(nome, marca, custo);
-        return true;
+    
+    // Deleta ferramenta do banco de dados
+    public void deletaFerramenta(){
+        ferramenta.delFerramentaDAO(this.Nome, this.Marca);
     }
-
-    //metodo para deletar ferramenta
-    public boolean deleteFerramentaBD(int id) {
-        int indice = this.procuraIndice(id);
-        FerramentaDAO.minhaLista.remove(indice);
-        return true;
+    
+    // Retorna lista de ferramentas cadastrads
+    public ArrayList getMinhaListaFerramenta(){
+        return ferramenta.getFerramentaDAO();
     }
-
-    // metodo para atualizar ferramentas
-    public boolean updateFerramentaBD(int ferramentaid, String novoNome, String marca1, double custo1) {
-       FerramentaDAO objetoDAO = new FerramentaDAO();
-       objetoDAO.setFerramentaDAO(ferramentaid, novoNome);
-        return true;
-    }
-
-    // metodo para procurar pelo indice
-    private int procuraIndice(int id) {
-        int indice = -1;
-        for (int i = 0; i < FerramentaDAO.minhaLista.size(); i++) {
-            if (FerramentaDAO.minhaLista.get(i).getId() == id) {
-                indice = i;
-            }
-        }
-        return indice;
-    }
-
-    // metodo para carregar ferramenta
-    public Ferramenta carregaFerramenta(int id) {
-        int indice = this.procuraIndice(id);
-        return FerramentaDAO.minhaLista.get(indice);
-    }
-
-    // metodo para obter o maior id da lista
-    public int maiorID() {
-        return FerramentaDAO.maiorID();
-    }
-
+    
 }

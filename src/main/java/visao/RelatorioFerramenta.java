@@ -1,6 +1,7 @@
 package visao;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Ferramenta;
         
@@ -10,8 +11,8 @@ public class RelatorioFerramenta extends javax.swing.JFrame {
         
     public RelatorioFerramenta() {
         initComponents();
-        this.objeto = new Ferramenta();
-        this.carregaTabela();
+        Ferramenta ferramenta = new Ferramenta();
+        ArrayList minhaLista = new ArrayList();
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +43,15 @@ public class RelatorioFerramenta extends javax.swing.JFrame {
                 "Ferramenta", "Preço"
             }
         ));
+        JRelatorioFerramenta.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                JRelatorioFerramentaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(JRelatorioFerramenta);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -74,17 +84,13 @@ public class RelatorioFerramenta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_JBVoltarActionPerformed
 
-   public void carregaTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) this.JRelatorioFerramenta.getModel();
-        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
-        // Carrega a lista de objetos aluno
-        ArrayList<Ferramenta> minhaLista = objeto.getMinhaLista();
-        for (Ferramenta a : minhaLista) {
-            modelo.addRow(new Object[]{
-                a.getNome(),
-                a.getCusto(),});
-        }
-    }
+    private void JRelatorioFerramentaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JRelatorioFerramentaAncestorAdded
+        Ferramenta ferramenta = new Ferramenta();
+       ferramenta.getMinhaListaFerramenta();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JRelatorioFerramentaAncestorAdded
+
+ 
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

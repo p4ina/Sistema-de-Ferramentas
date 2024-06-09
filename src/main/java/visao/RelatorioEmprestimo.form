@@ -60,6 +60,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="JRelatorioEmprestimoAncestorAdded"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

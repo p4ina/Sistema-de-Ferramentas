@@ -1,7 +1,9 @@
 package visao;
 
 import dao.AmigoDAO;
+import dao.Conexao;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Amigo;
 import modelo.Emprestimo;
@@ -13,8 +15,9 @@ public final class RelatorioAmigo extends javax.swing.JFrame {
 
     public RelatorioAmigo() {
         initComponents();
-        AmigoDAO amg = new AmigoDAO(); // carrega objetoamigo de amigo
-        amg.getMinhaListaAmigoDAO();
+        Conexao conexao = new Conexao();
+        AmigoDAO amigoDAO = new AmigoDAO(); // carrega objetoamigo de amigo
+        amigoDAO.getMinhaListaAmigoDAO();
     }
 
     @SuppressWarnings("unchecked")
@@ -83,6 +86,8 @@ public final class RelatorioAmigo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JRelatorioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JRelatorioAncestorAdded
+         AmigoDAO amigoDAO = new AmigoDAO();
+                 amigoDAO.getMinhaListaAmigoDAO();
 
     }//GEN-LAST:event_JRelatorioAncestorAdded
 

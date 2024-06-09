@@ -124,47 +124,11 @@ public class TelaFerramenta extends javax.swing.JFrame {
     }//GEN-LAST:event_JBGerenciarFerramentaActionPerformed
 
     private void JBCadastrarFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarFerramentaActionPerformed
-        try {
-            // recebendo e validando dados da interface gráfica.
-            String ferramenta = "";
-            String marca = "";
-            double preco = 0;
-
-            if (this.JTFFerramenta.getText().length() < 2) {
-                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
-            } else {
-                ferramenta = this.JTFFerramenta.getText();
-            }
-
-            if (this.JTFMarca.getText().length() < 2) {
-                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
-            } else {
-                marca = this.JTFMarca.getText();
-            }
-
-            if (this.JTFPreco.getText().length() <= 0) {
-                throw new Mensagem("Idade deve ser número e maior que zero.");
-            } else {
-                preco = Integer.parseInt(this.JTFPreco.getText());
-            }
-
-            // envia os dados para o Controlador cadastrar
-            if (this.objetoferramenta.insertFerramentaBD(ferramenta, marca, preco)) {
-                JOptionPane.showMessageDialog(null, "Ferramenta Cadastrado com Sucesso!");
-                // limpa campos da interface
-                this.JTFFerramenta.setText("");
-                this.JTFMarca.setText("");
-                this.JTFPreco.setText("");
-            }
-            // Exibie no console o aluno cadastrado
-            System.out.println(this.objetoferramenta.getMinhaLista().toString());
-
-        } catch (Mensagem erro) {
-            JOptionPane.showMessageDialog(null, erro.getMessage());
-        } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um número válido.");
-        }
-
+        String nome = JOptionPane.showInputDialog(null, "Nome:");
+        String marca = JOptionPane.showInputDialog(null, "Marca:");
+        double custo = Double.parseDouble(JOptionPane.showInputDialog(null, "custo R$:"));
+        Ferramenta FerramentaAdd = new Ferramenta(nome, marca, custo);
+        FerramentaAdd.addFerramenta();     
         // TODO add your handling code here:
     }//GEN-LAST:event_JBCadastrarFerramentaActionPerformed
 

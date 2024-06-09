@@ -20,6 +20,7 @@ public class Emprestimo extends javax.swing.JFrame {
 
     public Emprestimo() {
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -181,7 +182,8 @@ public class Emprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JBRelatorioAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRelatorioAmigoActionPerformed
-        amigoDAO.getMinhaListaAmigoDAO();
+        RelatorioAmigo tela = new RelatorioAmigo();
+        tela.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBRelatorioAmigoActionPerformed
