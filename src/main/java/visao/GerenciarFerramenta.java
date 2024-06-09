@@ -1,11 +1,7 @@
 package visao;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import modelo.Ferramenta;
 import visao.Mensagem;
@@ -19,7 +15,6 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
         this.objetoferramenta = new Ferramenta(); // carrega objetoamigo de amigo
         this.carregaTabela();
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -154,7 +149,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JTableFerramentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableFerramentaMouseClicked
-        if (this.JTableFerramenta.getSelectedRow() != -1) {
+       if (this.JTableFerramenta.getSelectedRow() != -1) {
             String ferramenta = this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 1).toString();
             String preco = this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 2).toString();
             String marca = this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 3).toString();
@@ -175,71 +170,89 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
     }//GEN-LAST:event_JTFFerramentasActionPerformed
 
     private void JBRemoverFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRemoverFerramentaActionPerformed
-        String nomeAmigo = JOptionPane.showInputDialog(null, "Nome:");
-        String foneAmigo = JOptionPane.showInputDialog(null, "Marca:");
-        Ferramenta ferramentaDel = new Ferramenta(nomeAmigo, foneAmigo, 0.0);
-        ferramentaDel.deletaFerramenta();
+          try {
+            //
+            int id = 0;
+            if (this.JTableFerramenta.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione a Ferramenta para Apagar");
+            } else {
+                id = Integer.parseInt(this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 0).toString());
+            }
+
+            // 
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar esta Ferramenta ?");
+
+            if (respostaUsuario == 0) {// clicou em SIM
+                // envia os dados para o Aluno processar
+                if (this.objetoferramenta.deleteFerramentaBD(id)) {
+                    this.JTFFerramentas.setText("");
+                    this.JTFMarca.setText("");
+                    this.JTFPreco.setText("");
+
+                    JOptionPane.showMessageDialog(rootPane, "Ferramenta Apagado com Sucesso!");
+                }
+            }
+            // atualiza a tabela.
+            System.out.println(this.objetoferramenta.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            //
+            carregaTabela();
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_JBRemoverFerramentaActionPerformed
 
     private void JBAtualizarFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAtualizarFerramentaActionPerformed
-        String editNome = JOptionPane.showInputDialog("Nome da ferramenta: ");
-        String editMarca = JOptionPane.showInputDialog("Marca da ferramenta: ");
-        Ferramenta ferramentaEdit = new Ferramenta(editNome, editMarca, 0.0);
-        int ferramentaid = ferramentaEdit.getFerramentaid(editNome, editMarca);
-        if(ferramentaid == -1){
-           JOptionPane.showMessageDialog(null, "Dados não encontrados!"); 
-        }else{
-            // Definindo o look and feel do sistema operacional
-           try {
-               UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-           } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-               e.printStackTrace();
-           }
+      try {
+            int id = 0;
+            String ferramenta = "";
+            String marca = "";
+            double preco = 0.0;
 
-           // Opções de botões
-           String[] options = {"Nome", "Marca", "Custo", "Cancelar"};
+            if (this.JTFFerramentas.getText().length() < 2) {
+                throw new Mensagem("Nome da Ferramenta deve conter ao menos 2 caracteres.");
+            } else {
+                ferramenta = this.JTFFerramentas.getText();
+            }
 
-           // Mensagem da caixa de diálogo
-           String message = "Qual dado você gostaria de alterar?";
+            if (this.JTFMarca.getText().length() < 2) {
+                throw new Mensagem("Marca deve conter ao menos 2 caracteres.");
+            } else {
+                marca = this.JTFMarca.getText();
+            }
 
-           // Título da caixa de diálogo
-           String title = "Editando dados de ferramenta";
+            if (this.JTFPreco.getText().length() <= 0) {
+                throw new Mensagem("Preço deve ser número e maior que zero.");
+            } else {
+                preco = Double.parseDouble(this.JTFPreco.getText());
+            }
 
-           // Exibindo o JOptionPane com botões personalizados
-           int option = JOptionPane.showOptionDialog(
-                   null,                                 // Componente pai
-                   message,                              // Mensagem
-                   title,                                // Título
-                   JOptionPane.YES_NO_CANCEL_OPTION,     // Tipo de opção
-                   JOptionPane.QUESTION_MESSAGE,         // Tipo de mensagem
-                   null,                                 // Ícone
-                   options,                              // Botões personalizados
-                   options[0]                            // Botão padrão
-           );
+            if (this.JTableFerramenta.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione uma Ferramenta para Alterar");
+            } else {
+                id = Integer.parseInt(this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 0).toString());
+            }
 
-           // Tratamento da opção selecionada
-           switch (option) {
-               case 0: // Salvar
-                   editNome = JOptionPane.showInputDialog("Novo nome: ");
-                   ferramentaEdit.setNome(editNome);
-                   break;
-               case 1: // Não Salvar
-                   editMarca = JOptionPane.showInputDialog("Nova Marca: ");
-                   ferramentaEdit.setMarca(editMarca);
-                   break;
-               case 2: // Cancelar
-                   double editCusto = Double.parseDouble(JOptionPane.showInputDialog("Novo Custo: "));
-                   ferramentaEdit.setCusto(editCusto);
-                   break;
-               case 3: // Cancelar
-                   JOptionPane.showMessageDialog(null, "Operação cancelada!");
-                   break;
-               default:
-                   System.out.println("Nenhuma opção selecionada");
-                   break;
-           }
-        }        
+            // envia os dados para o Aluno processar
+            if (this.objetoferramenta.updateFerramentaBD(id, ferramenta, marca, preco)) {
+                // limpa os campos
+                this.JTFFerramentas.setText("");
+                this.JTFMarca.setText("");
+                this.JTFPreco.setText("");
+                JOptionPane.showMessageDialog(null, "Ferramenta Alterado com Sucesso!");
+
+            }
+            // Exibe no console o aluno cadastrado
+            System.out.println(this.objetoferramenta.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        } finally {
+            // atualiza a tabela.
+            carregaTabela();
+        }   
         // TODO add your handling code here:
     }//GEN-LAST:event_JBAtualizarFerramentaActionPerformed
 
@@ -256,14 +269,16 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableFerramenta.getModel();
         modelo.setNumRows(0); // Posiciona na primeira linha da tabela
         // Carrega a lista de objetos aluno
-        ArrayList<Ferramenta> minhaLista = objetoferramenta.getMinhaListaFerramenta();
+        ArrayList<Ferramenta> minhaLista = objetoferramenta.getMinhaLista();
         for (Ferramenta a : minhaLista) {
             modelo.addRow(new Object[]{
-                a.getNome(),
+                a.getId(),
+                a.getFerramenta(),
                 a.getMarca(),
-                a.getCusto(),});
+                a.getPreco(),});
         }
     }
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

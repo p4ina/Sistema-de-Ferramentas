@@ -182,7 +182,7 @@ public class Emprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JBRelatorioAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRelatorioAmigoActionPerformed
-        RelatorioAmigo tela = new RelatorioAmigo();
+      RelatorioAmigo tela = new RelatorioAmigo();
         tela.setVisible(true);
 
         // TODO add your handling code here:
@@ -209,16 +209,6 @@ public class Emprestimo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JCFerramentaActionPerformed
 
-    public void getMinhaListaAmigoDAO() {
-        DefaultTableModel modelo = (DefaultTableModel) this.JCAmigo.getModel();
-        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
-        // Carrega a lista de objetos aluno
-        ArrayList<Amigo> minhaLista = amigoDAO.getMinhaListaAmigoDAO();
-        for (Amigo a : minhaLista) {
-            modelo.addRow(new Object[]{
-                a.getNome()});
-        }
-    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

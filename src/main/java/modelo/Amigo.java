@@ -1,65 +1,111 @@
 package modelo;
 
-import dao.AmigoDAO;
 import java.util.ArrayList;
+import dao.AmigoDAO;
 
-public class Amigo{
+public class Amigo {
 
-    // Atributos
+    //atributos da classe
+    private int id;
     private String nome;
-    private String telefone;
-    private AmigoDAO amigo = new AmigoDAO();
+    private int telefone;
+    private int ferramentasPegas;
+    public Amigo getMinhaLista;
 
-    // Construtor Default
-    public Amigo(){
-        this("", "");
-    }
-    // Construtor 
-    public Amigo(String nome, String telefone){
+    //construtor principal
+    public Amigo(int id, String nome, int telefone, int ferramentasPegas) {
+        this.id = id;
         this.nome = nome;
         this.telefone = telefone;
+        this.ferramentasPegas = ferramentasPegas;
     }
 
-    // Getters 
-    public String getNome(){
-        return amigo.getNomeDAO(this.getAmigoid(this.nome, this.telefone));
+    //construtor padrão
+    public Amigo() {
+        this(0, "", 0, 0);
     }
-    public String getTelefone(){
-        return this.telefone;
-    }
-    
-    public int getAmigoid(String nome, String telefone){
-        return amigo.getAmigoidDAO(nome, telefone);
-    }
-    // ----------
 
-    // Setters
+    //getters e setters para os atributos definidos
+    public String getNome() {
+        return nome;
+    }
+
     public void setNome(String nome) {
-        String auxNome = this.nome;
         this.nome = nome;
-        amigo.setNomeDAO(this.getAmigoid(auxNome, this.telefone), nome);
     }
-    
-    public void setTelefone(String telefone){
-        String auxTelefone = this.telefone;
+
+    public int getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(int telefone) {
         this.telefone = telefone;
-        amigo.setTelefoneDAO(this.getAmigoid(this.nome, auxTelefone), telefone);
     }
-    // ----------
-    
-    // Adiciona o amigo ao banco de dados
-    public void addAmigo(){
-        amigo.addAmigoDAO(this.nome, this.telefone);
+
+    public int getId() {
+        return id;
     }
-    
-    // Deleta o amigo do banco de dados
-    public void delAmigo(){
-        amigo.delAmigoDAO(this.nome, this.telefone);
+
+    public void setId(int id) {
+        this.id = id;
     }
-    
-    // Retorna todos os amigos cadastrados
-    public ArrayList getMinhaListaAmigo(){
-        return amigo.getMinhaListaAmigoDAO();
+
+    //metodo para retornar o objeto
+    @Override
+    public String toString() {
+        return "Amigo{" + "id=" + id + ", nome=" + nome + ", telefone=" + telefone
+                + ", ferramentasPegas=" + ferramentasPegas + '}';
+
+        //metodo para obter a lista de amigos a partir do DAO
+    }
+
+    public ArrayList<Amigo> getMinhaLista() {
+        return AmigoDAO.getMinhaLista();
+    }
+
+    //metodo para inserir um novo amigo no BD
+    public boolean insertAmigoBD(String nome, int ind) {
+        int id = this.maiorID() + 1;
+        Amigo objeto = new Amigo(id, nome, ind, ferramentasPegas);
+        AmigoDAO.minhaLista.add(objeto);
+        return true;
+    }
+
+    //metodo para deletar um amigo
+    public boolean deleteAmigoBD(int id) {
+        int indice = this.procuraIndice(id);
+        AmigoDAO.minhaLista.remove(indice);
+        return true;
+    }
+
+    //metodo para atualizar os dados de algum amigo que ja existe
+    public boolean updateAmigoBD(int id, String nome, int telefone) {
+        Amigo objeto = new Amigo(id, nome, telefone, ferramentasPegas);
+        int indice = this.procuraIndice(id);
+        AmigoDAO.minhaLista.set(indice, objeto);
+        return true;
+    }
+
+    //metodo para encontrar algum amigo pelo seu id
+    private int procuraIndice(int id) {
+        int indice = -1;
+        for (int i = 0; i < AmigoDAO.minhaLista.size(); i++) {
+            if (AmigoDAO.minhaLista.get(i).getId() == id) {
+                indice = i;
+            }
+        }
+        return indice;
+    }
+
+    //metodo para carregar um amigo pelo ID
+    public Amigo carregaAmigo(int id) {
+        int indice = this.procuraIndice(id);
+        return AmigoDAO.minhaLista.get(indice);
+    }
+
+    //metodo para obter o maior ID da lista
+    public int maiorID() {
+        return AmigoDAO.maiorID();
     }
 
 }

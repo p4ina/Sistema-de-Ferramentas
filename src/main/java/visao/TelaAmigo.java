@@ -33,6 +33,11 @@ public class TelaAmigo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         JBCadastrarAmigo = new javax.swing.JButton();
         JBGerenciarAmigo = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        JTFId = new javax.swing.JTextField();
+        JTFNome = new javax.swing.JTextField();
+        JTFTelefone = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -77,7 +82,7 @@ public class TelaAmigo extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Ao clicar em Cadastrar Amigo, registrar o nome e telefone.");
+        jLabel1.setText("Nome");
 
         JBCadastrarAmigo.setText("Cadastrar Amigo");
         JBCadastrarAmigo.addActionListener(new java.awt.event.ActionListener() {
@@ -93,48 +98,100 @@ public class TelaAmigo extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Telefone");
+
+        jLabel3.setText("ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(JTFTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(JTFId, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JBCadastrarAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(JBGerenciarAmigo))
-                            .addComponent(jLabel1)))
+                        .addGap(75, 75, 75)
+                        .addComponent(JBVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(JBVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 58, Short.MAX_VALUE))
+                        .addComponent(JBCadastrarAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(JBGerenciarAmigo)))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(JTFId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(JTFTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCadastrarAmigo)
                     .addComponent(JBGerenciarAmigo))
                 .addGap(18, 18, 18)
                 .addComponent(JBVoltar)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBCadastrarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarAmigoActionPerformed
-        String addAmigo = JOptionPane.showInputDialog(null, "Nome:");
-        String addFone = JOptionPane.showInputDialog(null, "Telefone:");
-        Amigo amigoAdd = new Amigo(addAmigo, addFone);
-        
-        amigoAdd.addAmigo();
+       try {
+            // recebendo e validando dados da interface gráfica.
+            int id = 0;
+            String nome = "";
+            int telefone = 0;
+
+            if (this.JTFNome.getText().length() < 2) {
+                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFNome.getText();
+            }
+
+            if (this.JTFTelefone.getText().length() <= 0) {
+                throw new Mensagem("telefone deve ser número e maior que zero.");
+            } else {
+                telefone = Integer.parseInt(this.JTFTelefone.getText());
+            }
+            // envia os dados para o Controlador cadastrar
+            if (this.objetoamigo.insertAmigoBD(nome, telefone)) {
+                JOptionPane.showMessageDialog(null, "Amigo Cadastrado com Sucesso!");
+                // limpa campos da interface
+                this.JTFNome.setText("");
+                this.JTFTelefone.setText("");
+            }
+            // Exibie no console o aluno cadastrado
+            System.out.println(this.objetoamigo.getMinhaLista().toString());
+
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+
+        }
     }//GEN-LAST:event_JBCadastrarAmigoActionPerformed
 
     private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
@@ -142,7 +199,7 @@ public class TelaAmigo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JBGerenciarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGerenciarAmigoActionPerformed
-        GerenciarAmigo objeto = new GerenciarAmigo();
+       GerenciarAmigo objeto = new GerenciarAmigo();
         objeto.setVisible(true);
 
         // TODO add your handling code here:
@@ -187,9 +244,14 @@ public class TelaAmigo extends javax.swing.JFrame {
     private javax.swing.JButton JBCadastrarAmigo;
     private javax.swing.JButton JBGerenciarAmigo;
     private javax.swing.JButton JBVoltar;
+    private javax.swing.JTextField JTFId;
+    private javax.swing.JTextField JTFNome;
+    private javax.swing.JTextField JTFTelefone;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

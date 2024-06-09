@@ -1,7 +1,6 @@
 package visao;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Ferramenta;
         
@@ -11,8 +10,8 @@ public class RelatorioFerramenta extends javax.swing.JFrame {
         
     public RelatorioFerramenta() {
         initComponents();
-        Ferramenta ferramenta = new Ferramenta();
-        ArrayList minhaLista = new ArrayList();
+        this.objeto = new Ferramenta();
+        this.carregaTabela();
     }
 
     @SuppressWarnings("unchecked")
@@ -85,12 +84,21 @@ public class RelatorioFerramenta extends javax.swing.JFrame {
     }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JRelatorioFerramentaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JRelatorioFerramentaAncestorAdded
-        Ferramenta ferramenta = new Ferramenta();
-       ferramenta.getMinhaListaFerramenta();
+     
         // TODO add your handling code here:
     }//GEN-LAST:event_JRelatorioFerramentaAncestorAdded
 
- 
+public void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.JRelatorioFerramenta.getModel();
+        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
+        // Carrega a lista de objetos aluno
+        ArrayList<Ferramenta> minhaLista = objeto.getMinhaLista();
+        for (Ferramenta a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getFerramenta(),
+                a.getPreco(),});
+        }
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

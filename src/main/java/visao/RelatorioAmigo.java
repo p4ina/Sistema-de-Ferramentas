@@ -1,9 +1,6 @@
 package visao;
 
-import dao.AmigoDAO;
-import dao.Conexao;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Amigo;
 import modelo.Emprestimo;
@@ -15,11 +12,9 @@ public final class RelatorioAmigo extends javax.swing.JFrame {
 
     public RelatorioAmigo() {
         initComponents();
-        Conexao conexao = new Conexao();
-        AmigoDAO amigoDAO = new AmigoDAO(); // carrega objetoamigo de amigo
-        amigoDAO.getMinhaListaAmigoDAO();
+        this.objeto = new Amigo(); // carrega objetoamigo de amigo
+        this.carregaTabela();
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -86,11 +81,19 @@ public final class RelatorioAmigo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JRelatorioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JRelatorioAncestorAdded
-         AmigoDAO amigoDAO = new AmigoDAO();
-                 amigoDAO.getMinhaListaAmigoDAO();
-
+ 
     }//GEN-LAST:event_JRelatorioAncestorAdded
-
+public void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.JRelatorio.getModel();
+        modelo.setNumRows(0); // Posiciona na primeira linha da tabela
+        // Carrega a lista de objetos aluno
+        ArrayList<Amigo> minhaLista = objeto.getMinhaLista();
+        for (Amigo a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getNome(),
+                a.getTelefone(),});
+        }
+    }
    
 
     public static void main(String args[]) {
