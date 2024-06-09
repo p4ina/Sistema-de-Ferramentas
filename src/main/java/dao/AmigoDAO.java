@@ -132,13 +132,13 @@ public class AmigoDAO {
     // ----------
 
     // Setters
-    public void setNomeDAO(int amigoid, String novoNome, String novoTelefone) {
+    public void setNomeDAO(int amigoid, String nome, String telefone) {
         String sql= "UPDATE db_amigos\n" + "SET nome = (?)\n" + "WHERE amigoid = (?);";
         try {
             PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
             stmt.setInt(1, amigoid);
-            stmt.setString(2, novoNome);
-            stmt.setString(3, novoTelefone);
+            stmt.setString(2, nome);
+            stmt.setString(3, telefone);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -196,5 +196,11 @@ public class AmigoDAO {
             throw new RuntimeException(erro);
         }
         
+    }
+ //metodo para atualizar os dados de algum amigo que ja existe
+        public boolean updateAmigoBD(int amigoid, String nome, String telefone) {
+        AmigoDAO objetoDAO = new AmigoDAO();
+        objetoDAO.setNomeDAO(amigoid, nome, telefone);
+        return true;
     }
 }

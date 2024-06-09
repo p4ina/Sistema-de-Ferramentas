@@ -77,7 +77,7 @@ public class Amigo {
     }
 
     //metodo para atualizar os dados de algum amigo que ja existe
-        public boolean updateAmigoBD(String nome, int amigoid) {
+        public boolean updateAmigoBD(int amigoid, String nome, String telefone) {
         AmigoDAO objetoDAO = new AmigoDAO();
         objetoDAO.setNomeDAO(amigoid, nome, telefone);
         return true;

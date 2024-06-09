@@ -161,13 +161,12 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBAtualizarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAtualizarAmigoActionPerformed
-            int id = 0;
-            String nome = "";
-            int telefone = 0;
-            
+        int id = 0;
+        String nome = "";
+        int telefone = 0;
+
         try {
             // recebendo e validando dados da interface gráfica.
-            
 
             if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
@@ -182,8 +181,9 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             }
 
             // envia os dados para o Aluno processar
-            if (this.objetoamigo.updateAmigoBD(nome, telefone)) {
+            if (this.amigoDAO.updateAmigoBD(id, nome, nome)) {
                 // limpa os campos
+                
                 this.JTFNome.setText("");
                 this.JTFTelefone.setText("");
                 JOptionPane.showMessageDialog(null, "Amigo Alterado com Sucesso!");
@@ -197,11 +197,11 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Informe um número válido.");
         } finally {
             // atualiza a tabela.
-                    getMinhaListaAmigoDAO();
+            getMinhaListaAmigoDAO();
 
         }
-            
-                // TODO add your handling code here:
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_JBAtualizarAmigoActionPerformed
 
     private void JTableAmigosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JTableAmigosAncestorAdded
