@@ -38,19 +38,18 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         JBVoltar = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        JTFAmigoId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         JTableAmigos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Id", "Nome", "Telefone"
+                "Nome", "Telefone"
             }
         ));
         JTableAmigos.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -120,8 +119,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JTFTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(JTFNome)
-                    .addComponent(JTFAmigoId))
+                    .addComponent(JTFNome))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -140,9 +138,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBRemoverAmigo)
-                    .addComponent(JTFAmigoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(JBRemoverAmigo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -312,7 +308,6 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     private javax.swing.JButton JBAtualizarAmigo;
     private javax.swing.JButton JBRemoverAmigo;
     private javax.swing.JToggleButton JBVoltar;
-    private javax.swing.JTextField JTFAmigoId;
     private javax.swing.JTextField JTFNome;
     private javax.swing.JTextField JTFTelefone;
     private javax.swing.JTable JTableAmigos;
