@@ -1,5 +1,5 @@
 package visao;
-
+//importações necessárias
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Ferramenta;
@@ -81,11 +81,12 @@ public class RelatorioFerramenta extends javax.swing.JFrame {
 
     private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
         this.dispose();
+        //botão para voltar
     }//GEN-LAST:event_JBVoltarActionPerformed
-
+   
     private void JRelatorioFerramentaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JRelatorioFerramentaAncestorAdded
      
-        // TODO add your handling code here:
+        // botão de gerar relatorio da ferramenta
     }//GEN-LAST:event_JRelatorioFerramentaAncestorAdded
 
 public void carregaTabela() {

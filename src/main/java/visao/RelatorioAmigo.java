@@ -1,5 +1,5 @@
 package visao;
-
+//importações
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Amigo;
@@ -7,12 +7,12 @@ import modelo.Emprestimo;
 import modelo.Ferramenta;
 
 public final class RelatorioAmigo extends javax.swing.JFrame {
-
+  //classe relatorio amigo
     private Amigo objeto;
 
     public RelatorioAmigo() {
         initComponents();
-        this.objeto = new Amigo(); // carrega objetoamigo de amigo
+        this.objeto = new Amigo(); // carrega objeto
         this.carregaTabela();
     }
     @SuppressWarnings("unchecked")
@@ -78,10 +78,11 @@ public final class RelatorioAmigo extends javax.swing.JFrame {
 
     private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
         this.dispose();
+        //botão de voltar
     }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JRelatorioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JRelatorioAncestorAdded
- 
+    //botao de gerar relatorio
     }//GEN-LAST:event_JRelatorioAncestorAdded
 public void carregaTabela() {
         DefaultTableModel modelo = (DefaultTableModel) this.JRelatorio.getModel();

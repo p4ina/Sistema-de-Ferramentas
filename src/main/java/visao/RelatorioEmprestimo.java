@@ -1,5 +1,5 @@
 package visao;
-
+//importações necessárias
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Emprestimo;
@@ -7,7 +7,7 @@ import modelo.Emprestimo;
 public class RelatorioEmprestimo extends javax.swing.JFrame {
 
     private Emprestimo objetoemprestimo;
-
+    
     public RelatorioEmprestimo() {
         initComponents();
     }
@@ -75,11 +75,12 @@ public class RelatorioEmprestimo extends javax.swing.JFrame {
 
     private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
         this.dispose();
+        //botão para voltar
     }//GEN-LAST:event_JBVoltarActionPerformed
 
     private void JRelatorioEmprestimoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JRelatorioEmprestimoAncestorAdded
        
-        // TODO add your handling code here:
+        // botão para gerar relatório
     }//GEN-LAST:event_JRelatorioEmprestimoAncestorAdded
 
     

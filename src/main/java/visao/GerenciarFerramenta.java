@@ -1,5 +1,5 @@
 package visao;
-
+//realiza as importações
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -9,10 +9,10 @@ import visao.Mensagem;
 public class GerenciarFerramenta extends javax.swing.JFrame {
 
     private Ferramenta objetoferramenta;
-
+    
     public GerenciarFerramenta() {
         initComponents();
-        this.objetoferramenta = new Ferramenta(); // carrega objetoamigo de amigo
+        this.objetoferramenta = new Ferramenta(); // carrega objetoferramenta de ferramenta
         this.carregaTabela();
     }
     @SuppressWarnings("unchecked")
@@ -147,7 +147,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void JTableFerramentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableFerramentaMouseClicked
        if (this.JTableFerramenta.getSelectedRow() != -1) {
             String ferramenta = this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 1).toString();
@@ -158,20 +158,21 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             this.JTFPreco.setText(preco);
             this.JTFMarca.setText(marca);
         }
-        // TODO add your handling code here:
+        //define as variaveis
     }//GEN-LAST:event_JTableFerramentaMouseClicked
 
     private void JTFPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFPrecoActionPerformed
-        // TODO add your handling code here:
+        // botão do preço
     }//GEN-LAST:event_JTFPrecoActionPerformed
 
     private void JTFFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFFerramentasActionPerformed
-        // TODO add your handling code here:
+        // botao das ferramentas
     }//GEN-LAST:event_JTFFerramentasActionPerformed
-
+    //botão remover ferramenta
     private void JBRemoverFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRemoverFerramentaActionPerformed
           try {
-            //
+            //se o usuario nao selecionar ferramenta irá mostrar
+            //"Primeiro Selecione a Ferramenta para Apagar"
             int id = 0;
             if (this.JTableFerramenta.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione a Ferramenta para Apagar");
@@ -181,9 +182,9 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
 
             // 
             int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar esta Ferramenta ?");
-
+            //confirmação se o usuario deseja mesmo realizar essa ação
             if (respostaUsuario == 0) {// clicou em SIM
-                // envia os dados para o Aluno processar
+                // envia os dados para o usuario processar
                 if (this.objetoferramenta.deleteFerramentaBD(id)) {
                     this.JTFFerramentas.setText("");
                     this.JTFMarca.setText("");
@@ -202,46 +203,52 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_JBRemoverFerramentaActionPerformed
-
+    //atualizar ferramenta
     private void JBAtualizarFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAtualizarFerramentaActionPerformed
       try {
             int id = 0;
             String ferramenta = "";
             String marca = "";
             double preco = 0.0;
-
+          
             if (this.JTFFerramentas.getText().length() < 2) {
                 throw new Mensagem("Nome da Ferramenta deve conter ao menos 2 caracteres.");
             } else {
                 ferramenta = this.JTFFerramentas.getText();
             }
-
+            //se o usuario nao escrever com menos de 2 caracteres mostra: 
+            //"Nome da Ferramenta deve conter ao menos 2 caracteres."
             if (this.JTFMarca.getText().length() < 2) {
                 throw new Mensagem("Marca deve conter ao menos 2 caracteres.");
+            //se o usuario nao escrever com menos de 2 caracteres mostra:
+            // "Marca deve conter ao menos 2 caracteres."   
             } else {
                 marca = this.JTFMarca.getText();
             }
 
             if (this.JTFPreco.getText().length() <= 0) {
                 throw new Mensagem("Preço deve ser número e maior que zero.");
+             //se o usuario não digitar numero ou menor que zero mostra
+             //"Preço deve ser número e maior que zero."
             } else {
                 preco = Double.parseDouble(this.JTFPreco.getText());
             }
 
             if (this.JTableFerramenta.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione uma Ferramenta para Alterar");
+            //Usuario deve selecionar uma ferramenta para alterar
             } else {
                 id = Integer.parseInt(this.JTableFerramenta.getValueAt(this.JTableFerramenta.getSelectedRow(), 0).toString());
             }
 
-            // envia os dados para o Aluno processar
+            // envia os dados para  processar
             if (this.objetoferramenta.updateFerramentaBD(id, ferramenta, marca, preco)) {
                 // limpa os campos
                 this.JTFFerramentas.setText("");
                 this.JTFMarca.setText("");
                 this.JTFPreco.setText("");
                 JOptionPane.showMessageDialog(null, "Ferramenta Alterado com Sucesso!");
-
+             //se os dados estiverem corretos a ferramenta será alterada cm sucesso
             }
             // Exibe no console o aluno cadastrado
             System.out.println(this.objetoferramenta.getMinhaLista().toString());
@@ -249,6 +256,8 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número válido.");
+           //usuario deve informar um numero válido, se não mostra
+           //"Informe um número válido."
         } finally {
             // atualiza a tabela.
             carregaTabela();

@@ -1,5 +1,5 @@
 package visao;
-
+//importação necessária
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -127,7 +127,11 @@ public class TelaFerramenta extends javax.swing.JFrame {
 
     private void JBCadastrarFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarFerramentaActionPerformed
        try {
-            // recebendo e validando dados da interface gráfica.
+            // recebendo e validando dados da interface gráfica, se tiver algum erro mostra:
+            //"Nome deve conter ao menos 2 caracteres."
+            //"Nome deve conter ao menos 2 caracteres."
+            //"Idade deve ser número e maior que zero.")
+            
             String ferramenta = "";
             String marca = "";
             double preco = 0;
@@ -153,6 +157,7 @@ public class TelaFerramenta extends javax.swing.JFrame {
             // envia os dados para o Controlador cadastrar
             if (this.objetoferramenta.insertFerramentaBD(ferramenta, marca, preco)) {
                 JOptionPane.showMessageDialog(null, "Ferramenta Cadastrado com Sucesso!");
+               //confirmação de cadastro
                 // limpa campos da interface
                 this.JTFFerramenta.setText("");
                 this.JTFMarca.setText("");

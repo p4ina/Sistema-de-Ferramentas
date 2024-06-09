@@ -1,5 +1,5 @@
 package visao;
-
+//realiza as importações
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -7,7 +7,7 @@ import visao.Mensagem;
 import modelo.Amigo;
 
 public class GerenciarAmigo extends javax.swing.JFrame {
-
+    //interface gráfica gerencia amigo
     private Amigo objetoamigo;
 
     public GerenciarAmigo() {
@@ -160,18 +160,24 @@ public class GerenciarAmigo extends javax.swing.JFrame {
 
             if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            //valida o campo de nome, se tiver erro mostra a resposta
+            //"Nome deve conter ao menos 2 caracteres."
             } else {
                 nome = this.JTFNome.getText();
             }
 
             if (this.JTFTelefone.getText().length() <= 0) {
                 throw new Mensagem("telefone deve ser número e maior que zero.");
+             //valida o campo telefone, se tiver erro mostra a resposta 
+             //"telefone deve ser número e maior que zero."
             } else {
                 telefone = Integer.parseInt(this.JTFTelefone.getText());
             }
 
             if (this.JTableAmigos.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione um Amigo para Alterar");
+                //valida a seleção de amigo na tabela, se tiver erro mostra
+                //"Primeiro Selecione um Amigo para Alterar"
             } else {
                 id = Integer.parseInt(this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 0).toString());
             }
@@ -222,23 +228,26 @@ public class GerenciarAmigo extends javax.swing.JFrame {
 
     private void JBRemoverAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRemoverAmigoActionPerformed
          try {
-            //
+            //remover amigo
             int id = 0;
             if (this.JTableAmigos.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione um Amigo para Apagar");
+            //se o usuário nao selecionar amigo ira mostrar
+            //"Primeiro Selecione um Amigo para Apagar"
             } else {
                 id = Integer.parseInt(this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 0).toString());
             }
 
-            // 
+            // mensagem de confirmação que deseja executar a ação
             int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar este Amigo ?");
-
+    
             if (respostaUsuario == 0) {
                 if (this.objetoamigo.deleteAmigoBD(id)) {
                     this.JTFNome.setText("");
                     this.JTFTelefone.setText("");
 
                     JOptionPane.showMessageDialog(rootPane, "Amigo Apagado com Sucesso!");
+                    //confirma que o amigo foi apagado
                 }
             }
             // atualiza a tabela.

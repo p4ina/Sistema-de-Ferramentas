@@ -1,5 +1,5 @@
 package visao;
-
+//importação necessária
 import visao.TelaFerramenta;
 import visao.TelaAmigo;
 import visao.Emprestimo;
@@ -118,19 +118,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaFerramenta objeto = new TelaFerramenta();
         objeto.setVisible(true);
 
-        // TODO add your handling code here:
+        //Botão de ferramenta
     }//GEN-LAST:event_JBFerramentaActionPerformed
 
     private void JBAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAmigoActionPerformed
         TelaAmigo objeto = new TelaAmigo();
         objeto.setVisible(true);
-        // TODO add your handling code here:
+        // botão amigo
     }//GEN-LAST:event_JBAmigoActionPerformed
 
     private void JBEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEmprestimoActionPerformed
         Emprestimo objeto = new Emprestimo();
         objeto.setVisible(true);
-            // TODO add your handling code here:
+            // botao emprestimo
     }//GEN-LAST:event_JBEmprestimoActionPerformed
 
     public static void main(String args[]) {

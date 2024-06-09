@@ -1,5 +1,5 @@
 package visao;
-
+//importação necessária
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -14,10 +14,11 @@ import visao.RelatorioFerramenta;
 import visao.RelatorioEmprestimo;
 
 public class Emprestimo extends javax.swing.JFrame {
-
+//interface gráfica do empréstimo
     private AmigoDAO objetoAmigo;
+    //declaração de um objeto(amigo DAO) para manipulação de dados amigos
     AmigoDAO amigoDAO = new AmigoDAO();
-
+    //construtor da classe empréstimo
     public Emprestimo() {
         initComponents();
         
@@ -180,33 +181,32 @@ public class Emprestimo extends javax.swing.JFrame {
     private void JBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBVoltarActionPerformed
-
+     //botão voltar
     private void JBRelatorioAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRelatorioAmigoActionPerformed
       RelatorioAmigo tela = new RelatorioAmigo();
         tela.setVisible(true);
-
-        // TODO add your handling code here:
+      //botão relatorio amigo
     }//GEN-LAST:event_JBRelatorioAmigoActionPerformed
 
     private void JBRelatorioEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRelatorioEmprestimoActionPerformed
         RelatorioEmprestimo tela = new RelatorioEmprestimo();
         tela.setVisible(true);
-        // TODO add your handling code here:
+        //botão relatorio emprestimo
     }//GEN-LAST:event_JBRelatorioEmprestimoActionPerformed
 
     private void JBRelatorioFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRelatorioFerramentaActionPerformed
         RelatorioFerramenta tela = new RelatorioFerramenta();
         tela.setVisible(true);
-        // TODO add your handling code here:
+        //botao relatorio Ferramenta
     }//GEN-LAST:event_JBRelatorioFerramentaActionPerformed
 
     private void JCAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCAmigoActionPerformed
 
-        // TODO add your handling code here:
+        // Configuração do combobox 
     }//GEN-LAST:event_JCAmigoActionPerformed
 
     private void JCFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCFerramentaActionPerformed
-        // TODO add your handling code here:
+        // Configuração do combobox 
     }//GEN-LAST:event_JCFerramentaActionPerformed
 
 
