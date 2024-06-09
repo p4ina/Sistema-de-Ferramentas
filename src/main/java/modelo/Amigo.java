@@ -12,7 +12,7 @@ public class Amigo {
     private int ferramentasPegas;
     public Amigo getMinhaLista;
 
-    //construtor principal
+    //CONSTRUTOR PRINCIPAL
     public Amigo(int id, String nome, int telefone, int ferramentasPegas) {
         this.id = id;
         this.nome = nome;
