@@ -105,5 +105,6 @@ public class Amigo {
     public int maiorID() {
         return AmigoDAO.maiorID();
     }
+    
 
 }

@@ -1,19 +1,25 @@
 package visao;
 
+import dao.AmigoDAO;
+import dao.Conexao;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import visao.Mensagem;
+import visao.Mensagem; 
 import modelo.Amigo;
 
 public class GerenciarAmigo extends javax.swing.JFrame {
 
     private Amigo objetoamigo;
+    AmigoDAO amigoDAO = new AmigoDAO();
 
     public GerenciarAmigo() {
         initComponents();
         this.objetoamigo = new Amigo(); // carrega objetoamigo de amigo
-        this.carregaTabela();
+        Conexao conexao = new Conexao();
+        Amigo amigo1 = new Amigo();
+    ArrayList minhaLista = new ArrayList();
+        
 
     }
 
@@ -187,14 +193,14 @@ public class GerenciarAmigo extends javax.swing.JFrame {
 
             }
             // Exibe no console o aluno cadastrado
-            System.out.println(this.objetoamigo.getMinhaLista().toString());
+            System.out.println(this.amigoDAO.getMinhaListaAmigoDAO().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número válido.");
         } finally {
-            // atualiza a tabela.
-            carregaTabela();
+            // atualiza a tabela
+        amigoDAO.getMinhaListaAmigoDAO();
         }
 
         // TODO add your handling code here:
@@ -214,7 +220,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         if (this.JTableAmigos.getSelectedRow() != -1) {
             String nome = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 1).toString();
             String telefone = this.JTableAmigos.getValueAt(this.JTableAmigos.getSelectedRow(), 2).toString();
-
+            
             this.JTFNome.setText(nome);
             this.JTFTelefone.setText(telefone);
         }
@@ -247,7 +253,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
             //
-            carregaTabela();
+            objetoamigo.maiorID();
         }
     }//GEN-LAST:event_JBRemoverAmigoActionPerformed
 
@@ -271,6 +277,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         ArrayList<Amigo> minhaLista = objetoamigo.getMinhaLista();
         for (Amigo a : minhaLista) {
             modelo.addRow(new Object[]{
+                a.getId(),
                 a.getNome(),
                 a.getTelefone(),});
         }

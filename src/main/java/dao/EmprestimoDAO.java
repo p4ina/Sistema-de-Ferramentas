@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import modelo.Emprestimo;
 
 public class EmprestimoDAO {
-
+    
+    Conexao conexao = new Conexao();
     public static ArrayList<Emprestimo> minhaLista = new ArrayList<>();
 
     public static ArrayList<Emprestimo> getMinhaLista() {
