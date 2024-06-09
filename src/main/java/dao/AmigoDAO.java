@@ -19,6 +19,7 @@ public class AmigoDAO {
     }
 
     public static int maiorID() {
+        //Define o maior id
         int maiorID = 0;
         for (int i = 0; i < minhaLista.size(); i++) {
             if (minhaLista.get(i).getId() > maiorID) {
@@ -26,5 +27,6 @@ public class AmigoDAO {
             }
         }
         return maiorID;
+        //retorna o maior id
     }
 }
