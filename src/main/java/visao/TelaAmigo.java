@@ -11,7 +11,6 @@ import visao.Emprestimo;
 public class TelaAmigo extends javax.swing.JFrame {
 
     private Amigo objetoamigo;
-    private Emprestimo JCAmigo;
     public TelaAmigo() {
         initComponents();
         this.objetoamigo = new Amigo();

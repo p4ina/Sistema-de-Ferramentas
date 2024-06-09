@@ -3,17 +3,18 @@ package modelo;
 import java.util.ArrayList;
 import dao.FerramentaDAO;
 
+
 public class Ferramenta {
     //atributos da classe
 
-    private int id;
     private String ferramenta;
     private String marca;
     private Double preco;
+    private FerramentaDAO ferramentaDAO = new FerramentaDAO();
     //construtor 
+    private int id;
 
-    public Ferramenta(int id, String ferramenta, String marca, Double preco) {
-        this.id = id;
+    public Ferramenta(String ferramenta, String marca, Double preco) {
         this.ferramenta = ferramenta;
         this.marca = marca;
         this.preco = preco;
@@ -21,7 +22,7 @@ public class Ferramenta {
 
     //construtor padrão
     public Ferramenta() {
-        this(0, "", "", 0.0);
+        this("", "", 0.0);
     }
 
     //getters e setters
@@ -49,18 +50,14 @@ public class Ferramenta {
         this.preco = preco;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+  public int getId(){
+        return ferramentaDAO.getFerramentaidDAO(ferramenta, marca, preco);
     }
 
     // Método para retornar uma representação em string do objeto
     @Override
     public String toString() {
-        return "Ferramenta{" + "id=" + id + ", ferramenta=" + ferramenta + ", marca=" + marca + ", preco=" + preco + '}';
+        return "Ferramenta{" + ", ferramenta=" + ferramenta + ", marca=" + marca + ", preco=" + preco + '}';
     }
 
     //Metodo para obter obter a lista de ferramentas pelo DAO
@@ -71,7 +68,7 @@ public class Ferramenta {
     //metodo para inserir uma nova ferramenta
     public boolean insertFerramentaBD(String ferramenta, String marca, double preco) {
         int id = this.maiorID() + 1;
-        Ferramenta objeto = new Ferramenta(id, ferramenta, marca, preco);
+        Ferramenta objeto = new Ferramenta(ferramenta, marca, preco);
         FerramentaDAO.minhaLista.add(objeto);
         return true;
     }
@@ -84,8 +81,8 @@ public class Ferramenta {
     }
 
     // metodo para atualizar ferramentas
-    public boolean updateFerramentaBD(int id, String ferramenta, String marca, double preco) {
-        Ferramenta objeto = new Ferramenta(id, ferramenta, marca, preco);
+    public boolean updateFerramentaBD(String ferramenta, String marca, double preco) {
+        Ferramenta objeto = new Ferramenta(ferramenta, marca, preco);
         int indice = this.procuraIndice(id);
         FerramentaDAO.minhaLista.set(indice, objeto);
         return true;

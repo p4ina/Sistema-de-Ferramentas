@@ -227,7 +227,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             }
 
             // envia os dados para o Aluno processar
-            if (this.objetoferramenta.updateFerramentaBD(id, ferramenta, marca, preco)) {
+            if (this.objetoferramenta.updateFerramentaBD(ferramenta, marca, preco)) {
                 // limpa os campos
                 this.JTFFerramentas.setText("");
                 this.JTFMarca.setText("");

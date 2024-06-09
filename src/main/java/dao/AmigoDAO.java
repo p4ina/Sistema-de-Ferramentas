@@ -175,7 +175,7 @@ public class AmigoDAO {
             }
             stmt.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Deu ruim paizao!");
+            JOptionPane.showMessageDialog(null, "Erro!");
         }
         return minhaLista;
     }

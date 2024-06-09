@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Conexao {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/aaa";
+    private static final String URL = "jdbc:mysql://localhost:3306/emprestimo";
     private static final String USER = "root";
     private static final String PASS = "13904725,?Xg";
 
