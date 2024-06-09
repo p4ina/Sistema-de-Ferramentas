@@ -38,6 +38,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         JBVoltar = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        JTFAmigoId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,7 +120,10 @@ public class GerenciarAmigo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JTFTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(JTFNome))
+                    .addComponent(JTFNome)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JTFAmigoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -138,7 +142,9 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(JBRemoverAmigo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBRemoverAmigo)
+                    .addComponent(JTFAmigoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -161,29 +167,34 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBAtualizarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAtualizarAmigoActionPerformed
-        int id = 0;
+        int amigoid = 0;
         String nome = "";
-        int telefone = 0;
+        String telefone = "";
 
         try {
             // recebendo e validando dados da interface gráfica.
-
+            if (this.JTFAmigoId.getText().length() <= 0) {
+                throw new Mensagem("Idade deve ser número e maior que zero.");
+            } else {
+                amigoid = Integer.parseInt(this.JTFTelefone.getText());
+            }
+            
             if (this.JTFNome.getText().length() < 2) {
                 throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
             } else {
                 nome = this.JTFNome.getText();
             }
 
-            if (this.JTFTelefone.getText().length() <= 0) {
+            if (this.JTFTelefone.getText().length() < 2) {
                 throw new Mensagem("Idade deve ser número e maior que zero.");
             } else {
-                telefone = Integer.parseInt(this.JTFTelefone.getText());
+                telefone = this.JTFTelefone.getText();
             }
 
             // envia os dados para o Aluno processar
-            if (this.amigoDAO.updateAmigoBD(id, nome, nome)) {
+            if (this.amigoDAO.updateAmigoBD(amigoid, nome, telefone)) {
                 // limpa os campos
-                
+                this.JTFAmigoId.setText("");
                 this.JTFNome.setText("");
                 this.JTFTelefone.setText("");
                 JOptionPane.showMessageDialog(null, "Amigo Alterado com Sucesso!");
@@ -295,6 +306,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
     private javax.swing.JButton JBAtualizarAmigo;
     private javax.swing.JButton JBRemoverAmigo;
     private javax.swing.JToggleButton JBVoltar;
+    private javax.swing.JTextField JTFAmigoId;
     private javax.swing.JTextField JTFNome;
     private javax.swing.JTextField JTFTelefone;
     private javax.swing.JTable JTableAmigos;
