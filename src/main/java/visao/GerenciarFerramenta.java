@@ -196,11 +196,13 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
     }//GEN-LAST:event_JBRemoverFerramentaActionPerformed
 
     private void JBAtualizarFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAtualizarFerramentaActionPerformed
+
+        int id = 0;
+        String ferramenta = "";
+        String marca = "";
+        double custo = 0.0;
+
         try {
-            int id = 0;
-            String ferramenta = "";
-            String marca = "";
-            double preco = 0.0;
 
             if (this.JTFFerramentas.getText().length() < 2) {
                 throw new Mensagem("Nome da Ferramenta deve conter ao menos 2 caracteres.");
@@ -217,7 +219,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             if (this.JTFPreco.getText().length() <= 0) {
                 throw new Mensagem("Preço deve ser número e maior que zero.");
             } else {
-                preco = Double.parseDouble(this.JTFPreco.getText());
+                custo = Double.parseDouble(this.JTFPreco.getText());
             }
 
             if (this.JTableFerramenta.getSelectedRow() == -1) {
@@ -227,7 +229,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             }
 
             // envia os dados para o Aluno processar
-            if (this.objetoferramenta.updateFerramentaBD(ferramenta, marca, preco)) {
+            if (this.objetoferramenta.updateFerramentaBD(id, ferramenta, marca, custo)) {
                 // limpa os campos
                 this.JTFFerramentas.setText("");
                 this.JTFMarca.setText("");
@@ -262,9 +264,9 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
         for (Ferramenta a : minhaLista) {
             modelo.addRow(new Object[]{
                 a.getId(),
-                a.getFerramenta(),
+                a.getNome(),
                 a.getMarca(),
-                a.getPreco(),});
+                a.getCusto(),});
         }
     }
 

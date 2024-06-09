@@ -64,7 +64,7 @@ public class FerramentaDAO {
     }
 
     public String getMarcaDAO(int ferramentaid) {
-        String sql = "SELECT telefone FROM db_ferramentas WHERE ferramentaid = ?";
+        String sql = "SELECT marca FROM db_ferramentas WHERE ferramentaid = ?";
         String marca = "";
         try (Connection conn = conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Configura os parâmetros da query
@@ -84,7 +84,7 @@ public class FerramentaDAO {
         return marca;
     }
     public String getPrecoDAO(int ferramentaid) {
-        String sql = "SELECT telefone FROM db_ferramentas WHERE ferramentaid = ?";
+        String sql = "SELECT custo FROM db_ferramentas WHERE ferramentaid = ?";
         String custo = "";
         try (Connection conn = conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Configura os parâmetros da query

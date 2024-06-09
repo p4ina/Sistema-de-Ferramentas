@@ -7,17 +7,17 @@ import dao.FerramentaDAO;
 public class Ferramenta {
     //atributos da classe
 
-    private String ferramenta;
+    private String nome;
     private String marca;
-    private Double preco;
+    private Double custo;
     private FerramentaDAO ferramentaDAO = new FerramentaDAO();
     //construtor 
     private int id;
 
-    public Ferramenta(String ferramenta, String marca, Double preco) {
-        this.ferramenta = ferramenta;
+    public Ferramenta(String nome, String marca, Double custo) {
+        this.nome = nome;
         this.marca = marca;
-        this.preco = preco;
+        this.custo = custo;
     }
 
     //construtor padrão
@@ -26,12 +26,12 @@ public class Ferramenta {
     }
 
     //getters e setters
-    public String getFerramenta() {
-        return ferramenta;
+    public String getNome() {
+        return nome;
     }
 
-    public void setFerramenta(String ferramenta) {
-        this.ferramenta = ferramenta;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getMarca() {
@@ -42,22 +42,22 @@ public class Ferramenta {
         this.marca = marca;
     }
 
-    public Double getPreco() {
-        return preco;
+    public Double getCusto() {
+        return custo;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public void setCusto(Double custo) {
+        this.custo = custo;
     }
 
   public int getId(){
-        return ferramentaDAO.getFerramentaidDAO(ferramenta, marca, preco);
+        return ferramentaDAO.getFerramentaidDAO(nome, marca, custo);
     }
 
     // Método para retornar uma representação em string do objeto
     @Override
     public String toString() {
-        return "Ferramenta{" + ", ferramenta=" + ferramenta + ", marca=" + marca + ", preco=" + preco + '}';
+        return "Ferramenta{" + ", ferramenta=" + nome + ", marca=" + marca + ", preco=" + custo + '}';
     }
 
     //Metodo para obter obter a lista de ferramentas pelo DAO
@@ -66,10 +66,10 @@ public class Ferramenta {
     }
 
     //metodo para inserir uma nova ferramenta
-    public boolean insertFerramentaBD(String ferramenta, String marca, double preco) {
+    public boolean insertFerramentaBD(String nome, String marca, double custo) {
         int id = this.maiorID() + 1;
-        Ferramenta objeto = new Ferramenta(ferramenta, marca, preco);
-        FerramentaDAO.minhaLista.add(objeto);
+       FerramentaDAO objetoDAO = new FerramentaDAO();
+       objetoDAO.addFerramentaDAO(nome, marca, custo);
         return true;
     }
 
@@ -81,10 +81,9 @@ public class Ferramenta {
     }
 
     // metodo para atualizar ferramentas
-    public boolean updateFerramentaBD(String ferramenta, String marca, double preco) {
-        Ferramenta objeto = new Ferramenta(ferramenta, marca, preco);
-        int indice = this.procuraIndice(id);
-        FerramentaDAO.minhaLista.set(indice, objeto);
+    public boolean updateFerramentaBD(int ferramentaid, String novoNome, String marca1, double custo1) {
+       FerramentaDAO objetoDAO = new FerramentaDAO();
+       objetoDAO.setFerramentaDAO(ferramentaid, novoNome);
         return true;
     }
 

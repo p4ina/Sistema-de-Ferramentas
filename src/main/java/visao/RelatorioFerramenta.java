@@ -81,8 +81,8 @@ public class RelatorioFerramenta extends javax.swing.JFrame {
         ArrayList<Ferramenta> minhaLista = objeto.getMinhaLista();
         for (Ferramenta a : minhaLista) {
             modelo.addRow(new Object[]{
-                a.getFerramenta(),
-                a.getPreco(),});
+                a.getNome(),
+                a.getCusto(),});
         }
     }
     
