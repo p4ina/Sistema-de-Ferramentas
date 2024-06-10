@@ -2,10 +2,10 @@
 
 Um Projeto desenvolvido para o Empréstimo e Devolução de Ferramentas.
 
-UC: Programação de Soluções Computacionais.
+UC: Programação de Soluções Computacionais / Universidade: Unisul Pedra Branca
 
 
-## Alunos: Leonardo Steimbach, Julia Schill, Leonardo Schio, Wander Silva e João Paulo / Professores: Osmar, Richard & Julio.
+## Alunos: Leonardo Steimbach, Julia Schill, Leonardo Schio, Wander Silva & João Paulo / Professores: Osmar, Richard & Julio.
 
 - [Visão Geral](#visão-geral)
 - [Como Usar](#como-usar)
